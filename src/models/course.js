@@ -1,3 +1,6 @@
+import { DataTypes } from 'sequelize';
+import sequelize from '../config/db.js';
+
 const Course = sequelize.define('Course', {
     id_course: {
     type: DataTypes.INTEGER,
