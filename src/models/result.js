@@ -1,5 +1,5 @@
 import { DataTypes } from 'sequelize';
-import sequelize from '../config/db.js';
+import sequelize from '../config/mysql.js';
 
 const Result = sequelize.define('Result', {
     id_result: {
@@ -19,4 +19,4 @@ Result.associate = (models) => {
     Result.belongsTo(models.Quiz, { foreignKey: 'id_quiz' });
 };
 
-export default result;
+export default Result;

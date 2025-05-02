@@ -1,5 +1,5 @@
 import { DataTypes } from 'sequelize';
-import sequelize from '../config/db.js';
+import sequelize from '../config/mysql.js';
 
 const Response = sequelize.define('Response', {
     id_response: {

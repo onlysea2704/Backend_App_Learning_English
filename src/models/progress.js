@@ -1,5 +1,5 @@
 import { DataTypes } from 'sequelize';
-import sequelize from '../config/db.js';
+import sequelize from '../config/mysql.js';
 
 const Progress = sequelize.define('Progress', {
       id_progress: {

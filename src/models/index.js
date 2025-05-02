@@ -23,7 +23,6 @@ db.Sequelize = Sequelize;
 
 db.User = User;
 db.Student = Student;
-db.Lecturer = Lecturer;
 db.Course = Course;
 db.Lesson = Lesson;
 db.Lecture = Lecture;

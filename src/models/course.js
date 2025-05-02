@@ -1,5 +1,5 @@
 import { DataTypes } from 'sequelize';
-import sequelize from '../config/db.js';
+import sequelize from '../config/mysql.js';
 
 const Course = sequelize.define('Course', {
     id_course: {
@@ -17,10 +17,6 @@ const Course = sequelize.define('Course', {
     tableName: 'courses',
     timestamps: false
 });
-
-Course.associate = (models) => {
-    Course.belongsTo(models.Lecturer, { foreignKey: 'id_lecturer' });
-};
 
 export default Course;
   

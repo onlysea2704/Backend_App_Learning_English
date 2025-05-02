@@ -8,4 +8,4 @@ const sequelize = new Sequelize(process.env.MYSQL_URI, {
     logging: false, // Ẩn log query
 });
 
-export {sequelize}
+export default sequelize
