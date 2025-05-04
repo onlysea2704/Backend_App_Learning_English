@@ -4,7 +4,8 @@ import sequelize from '../config/mysql.js';
 const MyCourse = sequelize.define('MyCourse', {
     id_transaction: {
     type: DataTypes.INTEGER,
-    primaryKey: true
+    primaryKey: true,
+    autoIncrement: true
     },
     id_student: DataTypes.INTEGER,
     id_course: DataTypes.INTEGER,

@@ -4,7 +4,9 @@ import sequelize from '../config/mysql.js';
 const Quiz = sequelize.define('Quiz', {
     id_quiz: {
     type: DataTypes.INTEGER,
-    primaryKey: true
+    primaryKey: true,
+    autoIncrement: true,
+    autoIncrement: true
     },
     name_quiz: DataTypes.STRING,
     description: DataTypes.TEXT,

@@ -5,6 +5,7 @@ const Student = sequelize.define('Student', {
     id_student: {
         type: DataTypes.INTEGER,
         primaryKey: true,
+        autoIncrement: true,
         autoIncrement: true
     },
     name: DataTypes.STRING,
@@ -14,13 +15,13 @@ const Student = sequelize.define('Student', {
     email: DataTypes.STRING,
     link_image: DataTypes.STRING,
     id_user: DataTypes.INTEGER
-    }, {
+}, {
     tableName: 'students',
     timestamps: false
 });
 
 Student.associate = (models) => {
-Student.belongsTo(models.User, { foreignKey: 'id_user' });
+    Student.belongsTo(models.User, { foreignKey: 'id_user' });
 };
 
 export default Student;

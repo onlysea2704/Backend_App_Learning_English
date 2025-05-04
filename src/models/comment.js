@@ -5,7 +5,8 @@ import sequelize from '../config/mysql.js';
 const Comment = sequelize.define('Comment', {
     id_comment: {
     type: DataTypes.INTEGER,
-    primaryKey: true
+    primaryKey: true,
+    autoIncrement: true
     },
     id_student: DataTypes.INTEGER,
     id_course: DataTypes.INTEGER,

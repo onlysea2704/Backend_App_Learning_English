@@ -4,7 +4,8 @@ import sequelize from '../config/mysql.js';
 const Progress = sequelize.define('Progress', {
       id_progress: {
         type: DataTypes.INTEGER,
-        primaryKey: true
+        primaryKey: true,
+        autoIncrement: true
       },
       id_student: DataTypes.INTEGER,
       id_lesson: DataTypes.INTEGER,

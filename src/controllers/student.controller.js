@@ -1,4 +1,4 @@
-import db from "../models";
+import db from "../models/index.js";
 
 export const getStudentInfoById = async (req, res) => {
     const student = await db.Student.findOne({ where: { firebase_user_id: req.firebase_user_id } });

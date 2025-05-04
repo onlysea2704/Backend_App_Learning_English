@@ -4,7 +4,9 @@ import sequelize from '../config/mysql.js';
 const Lecture = sequelize.define('Lecture', {
     id_lecture: {
     type: DataTypes.INTEGER,
-    primaryKey: true
+    primaryKey: true,
+    autoIncrement: true
+
     },
     name_lecture: DataTypes.STRING,
     description: DataTypes.TEXT,
