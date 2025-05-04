@@ -1,21 +1,29 @@
-import db from "../models";
-
-// export const login = async (req, res) => {
-//     const user = db.User.findOne({where: {firebase_user_id: }})
-// }
+import db from "../models/index.js";
 
 export const register = async (req, res) => {
-    const user = db.User.create({
-        firebase_user_id: req.firebase_user_id,
-        role: "user"
-    })
-    const student = db.Student.create({
-        name: req.name,
-        age: req.age,
-        gender: req.gender,
-        phone: req.phone,
-        email: req.email,
-        link_image: req.link_image,
-        id_user: req.id_user
-    })
-}
+  try {
+    const user = req.body;
+
+    // 1. Tạo user trước
+    const userCreated = await db.User.create({
+      firebase_user_id: user.firebase_user_id,
+      role: "user",
+    });
+
+    // 2. Tạo student và liên kết với user vừa tạo
+    const studentCreated = await db.Student.create({
+      name: user.name,
+      age: user.age,
+      gender: user.gender,
+      phone: user.phone,
+      email: user.email,
+      link_image: user.link_image,
+      id_user: userCreated.id, // ✅ dùng id vừa tạo
+    });
+
+    return res.json({ status: true, student: studentCreated });
+  } catch (error) {
+    console.error("Đăng ký thất bại:", error);
+    return res.status(500).json({ status: false, error: error.message });
+  }
+};
