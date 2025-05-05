@@ -30,3 +30,13 @@ export const getMyCourses = async (req, res) => {
 
     return res.json(courses)
 }
+
+export const getDetailCourseById = async (req, res) => {
+    console.log('************************')
+    console.log(req.body.id)
+    const detailCourse = await db.Course.findOne({ where: { id_course: Number(req.body.id) } })
+
+    const myCourse = await db.MyCourse.findOne({ where: { id_course: Number(req.body.id) } })
+    const isMyCourse = !!myCourse
+    return res.json({detailCourse, isMyCourse})
+}
