@@ -4,6 +4,7 @@ import db from './models/index.js';
 import cors from "cors"
 import userRoutes from "./routes/user.router.js"
 import courseRoutes from "./routes/course.router.js"
+import lessonRoutes from "./routes/lesson.router.js"
 
 dotenv.config()
 
@@ -15,6 +16,7 @@ app.use(express.json())
 app.use(cors())
 app.use('/user',userRoutes)
 app.use('/course',courseRoutes)
+app.use('/lesson',lessonRoutes)
 
 const port = process.env.SERVER_PORT
 app.listen(port, () => {
