@@ -1,6 +1,6 @@
 import db from "../models/index.js";
 
-const seedLectures = async (req, res) => {
+export const seedLectures = async (req, res) => {
     try {
         await db.Lecture.bulkCreate([
             {

@@ -1,8 +1,7 @@
 // node .\src\seed-data\seed-lesson.js
 import db from "../models/index.js";
 
-const seedLessons = async () => {
-
+export const seedLessons = async () => {
   try {
     await db.Lesson.bulkCreate([
       { id_course: 1, order_lesson: 1, type_lesson: 'video' },

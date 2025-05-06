@@ -13,7 +13,7 @@ const Comment = sequelize.define('Comment', {
     comment: DataTypes.TEXT,
     time_comment: DataTypes.DATE
 }, {
-    tableName: 'Comment',
+    tableName: 'comments',
     timestamps: false
 });
 

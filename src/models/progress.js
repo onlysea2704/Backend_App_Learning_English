@@ -11,7 +11,7 @@ const Progress = sequelize.define('Progress', {
       id_lesson: DataTypes.INTEGER,
       status: DataTypes.STRING
     }, {
-      tableName: 'Progress',
+      tableName: 'progresses',
       timestamps: false
     });
   

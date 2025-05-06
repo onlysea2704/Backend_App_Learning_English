@@ -1,7 +1,7 @@
 // node .\src\seed-data\seed-my-course.js
 import db from '../models/index.js';
 
-const seedMyCourses = async () => {
+export const seedMyCourses = async () => {
   try {
     await db.MyCourse.bulkCreate([
       {

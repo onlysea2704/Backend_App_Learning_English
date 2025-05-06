@@ -1,7 +1,7 @@
 // node .\src\seed-data\seed-course.js
 import db from '../models/index.js';
 
-const seedCourses = async () => {
+export const seedCourses = async () => {
   try {
     const courses = [
       {

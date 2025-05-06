@@ -1,6 +1,6 @@
 import db from "../models/index.js";
 
-const seedQuizes = async() => {
+export const seedQuizes = async() => {
     try {
         await db.Quiz.bulkCreate([
             {

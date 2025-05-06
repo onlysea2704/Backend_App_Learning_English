@@ -11,7 +11,7 @@ const MyCourse = sequelize.define('MyCourse', {
     id_course: DataTypes.INTEGER,
     time_transaction: DataTypes.DATE
 }, {
-    tableName: 'MyCourse',
+    tableName: 'my_courses',
     timestamps: false
 });
 

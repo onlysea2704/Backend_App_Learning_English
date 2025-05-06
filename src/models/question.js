@@ -20,7 +20,7 @@ const Question = sequelize.define('Question', {
     interpret: DataTypes.TEXT,
     type_question: DataTypes.STRING
 }, {
-    tableName: 'Question',
+    tableName: 'questions',
     timestamps: false
 });
 

@@ -16,7 +16,7 @@ const Response = sequelize.define('Response', {
     comment: DataTypes.TEXT,
     id_result: DataTypes.INTEGER
 }, {
-    tableName: 'Response',
+    tableName: 'responses',
     timestamps: false
 });
 

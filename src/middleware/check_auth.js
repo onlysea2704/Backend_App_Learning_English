@@ -1,4 +1,3 @@
-// import admin from "firebase-admin";
 import { admin } from "../config/firebase.js";
 import db from "../models/index.js";
 

@@ -11,7 +11,7 @@ const Result = sequelize.define('Result', {
     id_quiz: DataTypes.INTEGER,
     score: DataTypes.INTEGER
 }, {
-    tableName: 'Result',
+    tableName: 'results',
     timestamps: false
 });
 

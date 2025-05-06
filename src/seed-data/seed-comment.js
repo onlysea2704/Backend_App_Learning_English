@@ -1,6 +1,6 @@
 import db from "../models/index.js";
 
-const seedComments = async (req, res) => {
+export const seedComments = async (req, res) => {
     try {
         await db.Comment.bulkCreate([
             {
