@@ -1,6 +1,7 @@
 import { admin } from "../config/firebase.js";
+import db from "../models/index.js";
 
-const seedUsers = async () => {
+export const seedUsers = async () => {
 
     // let allUserIds = [];
     // let nextPageToken;
@@ -15,6 +16,10 @@ const seedUsers = async () => {
     const results = await admin.auth().listUsers()
     const users = results.users
     const firebaseUserIds = users.map((user) => user.uid)
-    console.log(firebaseUserIds)
+
+    firebaseUserIds.map((firebaseUserId) => {
+        db.User.create({firebase_user_id: firebaseUserId, role: 'user'})
+    })
+
 }
 seedUsers().then()
