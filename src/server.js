@@ -5,6 +5,7 @@ import cors from "cors"
 import userRoutes from "./routes/user.router.js"
 import courseRoutes from "./routes/course.router.js"
 import lessonRoutes from "./routes/lesson.router.js"
+import questionRoutes from "./routes/question.router.js"
 
 dotenv.config()
 
@@ -17,6 +18,7 @@ app.use(cors())
 app.use('/user',userRoutes)
 app.use('/course',courseRoutes)
 app.use('/lesson',lessonRoutes)
+app.use('/question',questionRoutes)
 
 const port = process.env.SERVER_PORT
 app.listen(port, () => {

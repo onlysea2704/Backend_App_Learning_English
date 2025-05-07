@@ -1,10 +1,13 @@
 import db from "../models/index.js";
 
 export const getAllQuestionByQuizId = async (req, res) => {
+
+    const user = req.user;
+    console.log(user)
     const idQuiz = req.body.id
 
-    const questions = db.Question.findAll({ where: { id_quiz: idQuiz } })
-
+    
+    const questions = await db.Question.findAll({ where: { id_quiz: idQuiz } })
     return res.json(questions)
 }
 
