@@ -40,7 +40,6 @@ export const checkUser = async (req, res, next) => {
 
     // Lấy user từ database
     const user = await db.User.findOne({ where: { firebase_user_id: uid } })
-
     if (!user) return res.status(404).send("User not found");
 
     req.user = user;
