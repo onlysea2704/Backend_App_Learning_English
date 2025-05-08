@@ -34,4 +34,4 @@ export const seedLessons = async () => {
   }
 }
 
-seedLessons().then()
+// seedLessons().then()

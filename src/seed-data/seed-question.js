@@ -3,7 +3,7 @@ import db from "../models/index.js";
 export const seedQuestions = async () => {
     try {
         await db.Question.bulkCreate(questions);
-        console.log('Đã thêm dữ liệu vào bảng quizes')
+        console.log('✅ Đã thêm dữ liệu vào bảng quizes')
     } catch (error) {
         console.log('')
     }

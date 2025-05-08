@@ -3,7 +3,7 @@ import db from "../models/index.js";
 export const seedResponses = async() => {
     try {
         await db.Response.bulkCreate(responsesData)
-        console.log('')
+        console.log('✅ Đã seed dữ liệu vào bảng responses')
     } catch (error) {
         console.log('')
     }

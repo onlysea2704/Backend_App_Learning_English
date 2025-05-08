@@ -20,8 +20,8 @@ const Student = sequelize.define('Student', {
     timestamps: false
 });
 
-Student.associate = (models) => {
-    Student.belongsTo(models.User, { foreignKey: 'id_user' });
-};
+// Student.associate = (models) => {
+//     Student.belongsTo(models.User, { foreignKey: 'id_user' });
+// };
 
 export default Student;

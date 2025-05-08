@@ -3,23 +3,28 @@ import db from "../models/index.js";
 
 export const seedUsers = async () => {
 
-    // let allUserIds = [];
-    // let nextPageToken;
+    try {
+        // let allUserIds = [];
+        // let nextPageToken;
 
-    // do {
-    //   const result = await admin.auth().listUsers(1000, nextPageToken);
-    //   const currentBatchIds = result.users.map(user => user.uid);
-    //   allUserIds.push(...currentBatchIds);
-    //   nextPageToken = result.pageToken;
-    // } while (nextPageToken);
+        // do {
+        //   const result = await admin.auth().listUsers(1000, nextPageToken);
+        //   const currentBatchIds = result.users.map(user => user.uid);
+        //   allUserIds.push(...currentBatchIds);
+        //   nextPageToken = result.pageToken;
+        // } while (nextPageToken);
 
-    const results = await admin.auth().listUsers()
-    const users = results.users
-    const firebaseUserIds = users.map((user) => user.uid)
+        const results = await admin.auth().listUsers()
+        const users = results.users
+        const firebaseUserIds = users.map((user) => user.uid)
 
-    firebaseUserIds.map((firebaseUserId) => {
-        db.User.create({firebase_user_id: firebaseUserId, role: 'user'})
-    })
+        firebaseUserIds.map((firebaseUserId) => {
+            db.User.create({ firebase_user_id: firebaseUserId, role: 'user' })
+        })
+        console.log("✅ Đã seed dữ liệu vào bảng user")
+    } catch (error) {
+
+    }
 
 }
-seedUsers().then()
+// seedUsers().then()

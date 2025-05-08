@@ -31,7 +31,7 @@ export const seedStudents = async () => {
                 id_user: 3
             }
         ]);
-        console.log('✔️ Seed dữ liệu cho bảng students thành công.');
+        console.log('✅ Seed dữ liệu cho bảng students thành công.');
     } catch (error) {
         console.error('❌ Lỗi khi seed dữ liệu cho students:', error);
     }

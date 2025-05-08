@@ -35,9 +35,9 @@ export const seedLectures = async (req, res) => {
             }
         ]);
 
-        console.log('Đã thêm dữ liệu mẫu vào bảng lectures.');
+        console.log('✅ Đã thêm dữ liệu mẫu vào bảng lectures.');
     } catch (error) {
         console.log('Thêm dữ liệu vào bảng bị lỗi', error);
     }
 }
-seedLectures().then()
+// seedLectures().then()

@@ -40,10 +40,10 @@ export const seedComments = async (req, res) => {
                 time_comment: new Date('2025-05-05T13:10:00')
             }
         ]);
-        console.log("Đã seed data Comment")
+        console.log("✅ Đã seed data Comment")
     } catch (error) {
         console.log("Đã có lỗi khi seed data Comment: ", error)
     }
     
 }
-seedComments().then()
+// seedComments().then()

@@ -17,8 +17,8 @@ const Quiz = sequelize.define('Quiz', {
     timestamps: false
 });
 
-Quiz.associate = (models) => {
-    Quiz.belongsTo(models.Lesson, { foreignKey: 'id_lesson' });
-};
+// Quiz.associate = (models) => {
+//     Quiz.belongsTo(models.Lesson, { foreignKey: 'id_lesson' });
+// };
   
 export default Quiz;

@@ -11,17 +11,18 @@ import { seedStudents } from "./seed-student.js";
 import { seedUsers } from "./seed-user.js";
 
 const clearDatabase = async () => {
+    console.log(123456789)
     try {
-        await db.MyCourse.destroy({ where: {}, truncate: true });
-        await db.Comment.destroy({ where: {}, truncate: true });
-        await db.Response.destroy({ where: {}, truncate: true });
-        await db.Question.destroy({ where: {}, truncate: true });
-        await db.Quiz.destroy({ where: {}, truncate: true });
-        await db.Lesson.destroy({ where: {}, truncate: true });
-        await db.Lecture.destroy({ where: {}, truncate: true });
-        await db.Course.destroy({ where: {}, truncate: true });
-        await db.Student.destroy({ where: {}, truncate: true });
-        await db.User.destroy({ where: {}, truncate: true });
+        await db.Response.destroy({ where: {} });
+        await db.Question.destroy({ where: {} });
+        await db.Comment.destroy({ where: {} });
+        await db.MyCourse.destroy({ where: {} });
+        await db.Quiz.destroy({ where: {} });
+        await db.Lesson.destroy({ where: {} });
+        await db.Lecture.destroy({ where: {} });
+        await db.Course.destroy({ where: {} });
+        await db.Student.destroy({ where: {} });
+        await db.User.destroy({ where: {} });
         console.log('✔️ Đã xóa sạch dữ liệu trong database.');
     } catch (err) {
         console.error('❌ Lỗi khi xóa dữ liệu:', err);
@@ -41,5 +42,5 @@ const seedData = async () => {
     await seedMyCourses();
 }
 
-clearDatabase().then()
-seedData().then()
+await clearDatabase().then()
+await seedData().then()

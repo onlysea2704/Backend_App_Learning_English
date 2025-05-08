@@ -18,7 +18,7 @@ export const getAllResponseByIdQuiz = async (req, res) => {
     const idStudent = db.Student.findOne({ where: { id_user: idUser }, attributes: ['id_student'] });
     const idResult = db.Result.findOne({ where: { id_student: idStudent, id_quiz: idQuiz } });
     const responses = db.Response.findAll({where: {id_result: idResult}});
-    
+
     return res.json({responses})
 }
 
@@ -32,8 +32,8 @@ export const createResponse = async (req, res) => {
         id_student: idStudent,
         id_question: response.id_question,
         link_mp3: '',
-        response: '',
-        type_response: '',
+        response: response.response,
+        type_response: response.type_response,
         score: response.response === question.answer ? question.scale : 0
     })
 }

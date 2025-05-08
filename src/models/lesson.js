@@ -15,8 +15,8 @@ const Lesson = sequelize.define('Lesson', {
     timestamps: false
 });
 
-Lesson.associate = (models) => {
-    Lesson.belongsTo(models.Course, { foreignKey: 'id_course' });
-};
+// Lesson.associate = (models) => {
+//     Lesson.belongsTo(models.Course, { foreignKey: 'id_course' });
+// };
 
 export default Lesson;

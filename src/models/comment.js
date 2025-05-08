@@ -17,9 +17,9 @@ const Comment = sequelize.define('Comment', {
     timestamps: false
 });
 
-Comment.associate = (models) => {
-    Comment.belongsTo(models.Student, { foreignKey: 'id_student' });
-    Comment.belongsTo(models.Course, { foreignKey: 'id_course' });
-};
+// Comment.associate = (models) => {
+//     Comment.belongsTo(models.Student, { foreignKey: 'id_student' });
+//     Comment.belongsTo(models.Course, { foreignKey: 'id_course' });
+// };
   
 export default Comment;

@@ -34,9 +34,9 @@ export const seedQuizes = async() => {
               score: 30
             }
           ]);
-          console.log('Đã thêm dữ liệu vào bảng quizes.');
+          console.log('✅ Đã thêm dữ liệu vào bảng quizes.');
     } catch (error) {
         console.log('Lỗi khi thêm dữ liệu vào bảng quizes.', error);
     }
 }
-seedQuizes().then()
+// seedQuizes().then()

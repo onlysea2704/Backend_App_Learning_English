@@ -55,4 +55,4 @@ export const seedCourses = async () => {
   }
 };
 
-seedCourses();
+// seedCourses();

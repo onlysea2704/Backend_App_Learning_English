@@ -15,9 +15,9 @@ const Result = sequelize.define('Result', {
     timestamps: false
 });
 
-Result.associate = (models) => {
-    Result.belongsTo(models.Student, { foreignKey: 'id_student' });
-    Result.belongsTo(models.Quiz, { foreignKey: 'id_quiz' });
-};
+// Result.associate = (models) => {
+//     Result.belongsTo(models.Student, { foreignKey: 'id_student' });
+//     Result.belongsTo(models.Quiz, { foreignKey: 'id_quiz' });
+// };
 
 export default Result;
