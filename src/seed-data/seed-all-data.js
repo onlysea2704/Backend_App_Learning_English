@@ -1,3 +1,5 @@
+// node .\src\seed-data\seed-all-data.js
+
 import db from "../models/index.js";
 import { seedComments } from "./seed-comment.js";
 import { seedCourses } from "./seed-course.js";
@@ -11,7 +13,6 @@ import { seedStudents } from "./seed-student.js";
 import { seedUsers } from "./seed-user.js";
 
 const clearDatabase = async () => {
-    console.log(123456789)
     try {
         await db.Response.destroy({ where: {} });
         await db.Question.destroy({ where: {} });
@@ -40,6 +41,7 @@ const seedData = async () => {
     await seedResponses();
     await seedComments();
     await seedMyCourses();
+    await seedLectures();
 }
 
 await clearDatabase().then()

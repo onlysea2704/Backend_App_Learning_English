@@ -14,6 +14,7 @@ import Result from './result.js';
 import Response from './response.js';
 import MyCourse from './myCourse.js';
 import Comment from './comment.js';
+import Lecturer from './lecturer.js';
 
 // Gán vào db object
 const db = {};
@@ -33,6 +34,7 @@ db.Result = Result;
 db.Response = Response;
 db.MyCourse = MyCourse;
 db.Comment = Comment;
+db.Lecturer = Lecturer;
 
 // Thiết lập quan hệ nếu có
 Object.values(db).forEach(model => {
