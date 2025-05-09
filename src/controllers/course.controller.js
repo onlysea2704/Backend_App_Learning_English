@@ -1,6 +1,7 @@
 import { Op } from "sequelize";
 import db from "../models/index.js";
-import { multer } from "multer"
+import cloudinary from "../config/cloudinary.js";
+import fs from 'fs'
 
 export const getAllCourse = async (req, res) => {
 
@@ -55,16 +56,25 @@ export const getAllLecturer = async (req, res) => {
 }
 
 export const creatCourse = async (req, res) => {
-    // input {nameCourse, description, price, idLecturer}
+    // input metadata: { nameCourse, description, price, idLecturer }
+
+    const metadata = JSON.parse(req.body.metadata);
+    const filePath = req.file.path;
+
+     const result = await cloudinary.uploader.upload(filePath, {
+      resource_type: 'image' 
+    });
+
+    fs.unlinkSync(filePath);
 
     await db.Course.create({
-        name_course: req.body.nameCourse,
-        description: req.body.description,
-        price: req.body.price,
-        link_image: req.body.description,
+        name_course: metadata.nameCourse,
+        description: metadata.description,
+        price: metadata.price,
+        link_image: result.url,
         number_lesson: 0,
         number_student: 0,
-        id_lecturer: req.body.idLecturer,
+        id_lecturer: metadata.idLecturer,
     })
     return res.json({ status: 'success' })
 }

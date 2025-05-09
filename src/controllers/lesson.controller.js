@@ -1,19 +1,24 @@
 import db from "../models/index.js";
 
-export const lessonGetByIdCourse = async (req, res) => {
+export const getAllLessonById = async (req, res) => {
 
-    const idCourse = req.body.id;
+    // input {idCourse}
+    const idCourse = req.body.idCourse;
     const lessons = await db.Lesson.findAll({ where: { id_course: idCourse } })
     return res.json(lessons)
 }
 
-export const getLecture = async (req, res) => {
-    const idLesson = req.body.id;
+export const getLectureById = async (req, res) => {
+
+    // input {idLecture}
+    const idLesson = req.body.idLesson;
     const lecture = db.Lecture.findOne({ where: { id_lesson: idLesson } })
     return res.json({ lecture })
 }
 
-export const getQuiz = async (req, res) => {
+export const getQuizById = async (req, res) => {
+
+    // input {idQuiz}
     const idLesson = req.body.id;
     const quiz = db.Quiz.findOne({ where: { id_lesson: idLesson } })
     return res.json({ quiz })

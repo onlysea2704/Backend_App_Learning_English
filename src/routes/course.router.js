@@ -1,7 +1,7 @@
 import express from "express"
 import { checkAdminRole, checkUser } from "../middleware/check_auth.js"
 import { creatCourse, deleteCourse, getAllCourse, getAllListCourseAdmin, getDetailCourseById, getMyCourses, updateCourse } from "../controllers/course.controller.js"
-import { multer } from "multer"
+import multer from "multer"
 
 const upload = multer({ dest: 'uploads/' })
 
@@ -10,7 +10,7 @@ router.get('/all-course', checkUser, getAllCourse)
 router.get('/my-course', checkUser, getMyCourses)
 router.get('/get-all-list-courses-admin', checkAdminRole, getAllListCourseAdmin)
 router.get('/detail-course', checkUser, getDetailCourseById)
-router.post('/create-course', checkAdminRole, upload.single('audio'), creatCourse)
+router.post('/create-course', upload.single('image'), creatCourse)
 router.get('/update-course', updateCourse)
 router.get('/delete-course', deleteCourse)
 
