@@ -6,5 +6,5 @@ const router = express.Router();
 router.get('/get-lessons-by-id-course', getAllLessonByIdCourse)
 router.get('/get-lecture-by-id-lesson', checkUser, getLecture)
 router.get('/get-quiz-by-id-lesson', checkUser, getQuiz)
-
+// router.post('/create-')
 export default router;
