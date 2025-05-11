@@ -4,7 +4,9 @@ import fs from "fs"
 
 export const register = async (req, res) => {
   try {
-    const userInform = JSON.parse(req.body.userInform);
+    console.log(req.body)
+    const userInform = JSON.parse(req.body.studentInfo);
+    console.log(req.body)
     let url
     if (req.file) {
       const filePath = req.file.path;

@@ -38,10 +38,7 @@ export const checkUser = async (req, res, next) => {
     // Xác thực ID Token bằng Firebase Admin SDK
     const decodedToken = await admin.auth().verifyIdToken(token);
     const uid = decodedToken.uid;
-    console.log('-----------------', uid)
-    // Lấy user từ database
     const user = await db.User.findOne({ where: { firebase_user_id: uid } })
-    console.log(user)
     if (!user) return res.status(404).send("User not found");
 
     req.user = user;
