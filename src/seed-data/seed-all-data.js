@@ -24,6 +24,18 @@ const clearDatabase = async () => {
         await db.Course.destroy({ where: {} });
         await db.Student.destroy({ where: {} });
         await db.User.destroy({ where: {} });
+
+        await db.sequelize.query('ALTER TABLE responses AUTO_INCREMENT = 1');
+        await db.sequelize.query('ALTER TABLE questions AUTO_INCREMENT = 1');
+        await db.sequelize.query('ALTER TABLE comments AUTO_INCREMENT = 1');
+        await db.sequelize.query('ALTER TABLE my_courses AUTO_INCREMENT = 1');
+        await db.sequelize.query('ALTER TABLE quizes AUTO_INCREMENT = 1');
+        await db.sequelize.query('ALTER TABLE lessons AUTO_INCREMENT = 1');
+        await db.sequelize.query('ALTER TABLE lectures AUTO_INCREMENT = 1');
+        await db.sequelize.query('ALTER TABLE courses AUTO_INCREMENT = 1');
+        await db.sequelize.query('ALTER TABLE students AUTO_INCREMENT = 1');
+        await db.sequelize.query('ALTER TABLE users AUTO_INCREMENT = 1');
+
         console.log('✔️ Đã xóa sạch dữ liệu trong database.');
     } catch (err) {
         console.error('❌ Lỗi khi xóa dữ liệu:', err);

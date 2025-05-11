@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import db from './models/index.js';
 import cors from "cors"
 import userRoutes from "./routes/user.router.js"
+import studentRoutes from "./routes/student.router.js"
 import courseRoutes from "./routes/course.router.js"
 import lessonRoutes from "./routes/lesson.router.js"
 import questionRoutes from "./routes/question.router.js"
@@ -16,6 +17,7 @@ const app = express()
 app.use(express.json())
 app.use(cors())
 app.use('/user',userRoutes)
+app.use('/student',studentRoutes)
 app.use('/course',courseRoutes)
 app.use('/lesson',lessonRoutes)
 app.use('/question',questionRoutes)

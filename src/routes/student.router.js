@@ -1,7 +1,8 @@
 import express from 'express'
-import { getStudentById } from '../controllers/student.controller';
+import { getStudentInfoById } from '../controllers/student.controller.js';
+import { checkUser } from '../middleware/check_auth.js';
 
 const router = express.Router();
-router.get('/info', getStudentById);
+router.get('/info', checkUser, getStudentInfoById);
 
 export default router;
