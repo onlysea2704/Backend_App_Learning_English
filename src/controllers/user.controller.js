@@ -4,9 +4,7 @@ import fs from "fs"
 
 export const register = async (req, res) => {
   try {
-    console.log(req.body)
     const userInform = JSON.parse(req.body.studentInfo);
-    console.log(req.body)
     let url
     if (req.file) {
       const filePath = req.file.path;
@@ -36,7 +34,6 @@ export const register = async (req, res) => {
 
     return res.json({ status: true, student: studentCreated });
   } catch (error) {
-    console.log(error)
     return res.status(500).json({ status: false, error: error.message });
   }
 };

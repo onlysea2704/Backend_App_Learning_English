@@ -4,31 +4,31 @@ import cloudinary from "../config/cloudinary.js";
 import fs from 'fs'
 
 export const getAllCourse = async (req, res) => {
-
+    const idUser = req.user.id;
     const myCourses = await db.MyCourse.findAll({
-        where: { id_student: req.user.id },
+        where: { id_student: idUser },
     });
-
     const listMyCourses = myCourses.map(myCourse => myCourse.id_course)
-
     const courses = await db.Course.findAll({
-        where: { id: { [Op.notIn]: listMyCourses } }
-    })
+        where: { id_course: { [Op.notIn]: listMyCourses } }
+    });
 
     return res.json(courses)
 }
 
 export const getMyCourses = async (req, res) => {
-
+    const idUser = req.user.id;
     const myCourses = await db.MyCourse.findAll({
         where: { id_student: req.user.id },
     });
-
     const listMyCourses = myCourses.map(myCourse => myCourse.id_course)
-
     const courses = await db.Course.findAll({
-        where: { id: listMyCourses }
-    })
+        where: {
+            id_course: {
+                [Op.in]: listMyCourses
+            }
+        }
+    });
 
     return res.json(courses)
 }
@@ -43,7 +43,7 @@ export const getDetailCourseById = async (req, res) => {
     // input {idCourse}
 
     const detailCourse = await db.Course.findOne({ where: { id_course: Number(req.body.idCourse) } })
-    const myCourse = await db.MyCourse.findOne({ where: { id_course: Number(req.body.id) } })
+    const myCourse = await db.MyCourse.findOne({ where: { id_course: Number(req.body.idCourse) } })
     const isMyCourse = !!myCourse
 
     return res.json({ detailCourse: detailCourse, isMyCourse: isMyCourse })
@@ -61,8 +61,8 @@ export const creatCourse = async (req, res) => {
     const metadata = JSON.parse(req.body.metadata);
     const filePath = req.file.path;
 
-     const result = await cloudinary.uploader.upload(filePath, {
-      resource_type: 'image' 
+    const result = await cloudinary.uploader.upload(filePath, {
+        resource_type: 'image'
     });
 
     fs.unlinkSync(filePath);

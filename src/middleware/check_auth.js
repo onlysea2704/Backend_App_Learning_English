@@ -16,14 +16,11 @@ export const checkAdminRole = async (req, res, next) => {
     // Lấy user từ database
     const [user] = await db.findOne({ where: { firebase_user_id: uid } })
 
-    console.log(user)
     if (!user) return res.status(404).send("User not found");
 
     if (user[0].role !== requiredRole) {
       return res.status(403).send("Forbidden");
     }
-    console.log('---------------------')
-    console.log(user)
     req.user = user;
     next();
   } catch (error) {

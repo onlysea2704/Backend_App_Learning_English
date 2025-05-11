@@ -5,12 +5,20 @@ export const seedMyCourses = async () => {
   try {
     await db.MyCourse.bulkCreate([
       {
-        id_student: 1,
-        id_course: 1,
+        id_student: 101,
+        id_course: 2,
       },
       {
-        id_student: 1,
-        id_course: 2,
+        id_student: 101,
+        id_course: 3,
+      },
+      {
+        id_student: 101,
+        id_course: 4,
+      },
+      {
+        id_student: 101,
+        id_course: 5,
       },
     ]);
 
@@ -19,4 +27,4 @@ export const seedMyCourses = async () => {
     console.error('❌ Lỗi seed MyCourse:', error);
   }
 };
-// seedMyCourses().then()
+seedMyCourses().then()

@@ -1,10 +1,17 @@
 import db from "../models/index.js";
 
-export const getAllLessonByIdCourse = async (req, res) => {
+export const getAllLessonById = async (req, res) => {
 
     // input {idCourse}
     const idCourse = req.body.idCourse;
     const lessons = await db.Lesson.findAll({ where: { id_course: idCourse } })
+    lessons.map((lesson) => {
+        if(lesson.type_lesson){
+            
+        }else {
+
+        }
+    })
     return res.json(lessons)
 }
 
