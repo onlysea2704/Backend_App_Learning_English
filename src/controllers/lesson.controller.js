@@ -1,40 +1,29 @@
 import db from "../models/index.js";
 
 export const getAllLessonByIdCourse = async (req, res) => {
-
+    // input {idCourse}
+    const idCourse = req.body.idCourse;
     try {
-        // input {idCourse}
-        const idCourse = req.body.idCourse;
-        // const lessons = await db.Lesson.findAll({ where: { id_course: idCourse } })
-        // lessons.map((lesson) => {
-        //     if(lesson.type_lesson){
-
-        //     }else {
-
-        //     }
-        // })
         const results = await db.sequelize.query(`
         SELECT 
             l.id_lesson,
             l.id_course,
             l.order_lesson,
             l.type_lesson,
-            q.name_quiz,
-            le.name_lecture
-        FROM lessons l
-        LEFT JOIN quizes q ON l.id_lesson = q.id_lesson
+            COALESCE(le.name_lecture, q.name_quiz) AS lesson_name
+        FROM Lessons l
         LEFT JOIN lectures le ON l.id_lesson = le.id_lesson
+        LEFT JOIN quizzes q ON l.id_lesson = q.id_lesson
         WHERE l.id_course = :id_course
-        ORDER BY l.order_lesson ASC
-        `, {
+        ORDER BY l.order_lesson ASC;
+    `, {
             replacements: { id_course: idCourse },
-            type: db.sequelize.QueryTypes.SELECT
-        })
-        console.log(results[0].name_quiz)
-        return res.json(results[0].name_quiz)
+            type: db.Sequelize.QueryTypes.SELECT
+        });
+        return res.json(results);
     } catch (error) {
-        console.log('error: ', error.message)
-        return res.status(500).json({ error: error.message })
+        console.log('error: ', error.message);
+        return res.status(500).json({ error: error.message });
     }
 }
 

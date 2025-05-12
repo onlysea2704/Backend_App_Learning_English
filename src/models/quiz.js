@@ -13,7 +13,7 @@ const Quiz = sequelize.define('Quiz', {
     id_lesson: DataTypes.INTEGER,
     score: DataTypes.INTEGER
 }, {
-    tableName: 'quizes',
+    tableName: 'quizzes',
     timestamps: false
 });
 

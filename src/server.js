@@ -7,6 +7,7 @@ import studentRoutes from "./routes/student.router.js"
 import courseRoutes from "./routes/course.router.js"
 import lessonRoutes from "./routes/lesson.router.js"
 import questionRoutes from "./routes/question.router.js"
+import commentRoutes from "./routes/comment.router.js"
 
 dotenv.config()
 
@@ -21,6 +22,7 @@ app.use('/student',studentRoutes)
 app.use('/course',courseRoutes)
 app.use('/lesson',lessonRoutes)
 app.use('/question',questionRoutes)
+app.use('/comment',commentRoutes)
 
 const port = process.env.SERVER_PORT
 app.listen(port, () => {

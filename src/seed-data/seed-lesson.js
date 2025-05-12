@@ -3,12 +3,18 @@ import db from "../models/index.js";
 
 export const seedLessons = async () => {
   try {
+
     await db.Lesson.bulkCreate([
       { id_course: 1, order_lesson: 1, type_lesson: 'video' },
       { id_course: 1, order_lesson: 2, type_lesson: 'quiz' },
       { id_course: 1, order_lesson: 3, type_lesson: 'video' },
       { id_course: 1, order_lesson: 4, type_lesson: 'quiz' },
       { id_course: 1, order_lesson: 5, type_lesson: 'video' },
+      { id_course: 1, order_lesson: 6, type_lesson: 'quiz' },
+      { id_course: 1, order_lesson: 7, type_lesson: 'video' },
+      { id_course: 1, order_lesson: 8, type_lesson: 'quiz' },
+      { id_course: 1, order_lesson: 9, type_lesson: 'video' },
+      { id_course: 1, order_lesson: 10, type_lesson: 'quiz' },
 
       { id_course: 2, order_lesson: 1, type_lesson: 'video' },
       { id_course: 2, order_lesson: 2, type_lesson: 'quiz' },
@@ -33,5 +39,3 @@ export const seedLessons = async () => {
     console.error('❌ Lỗi seed MyCourse:', error);
   }
 }
-
-// seedLessons().then()

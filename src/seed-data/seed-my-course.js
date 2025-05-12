@@ -27,4 +27,3 @@ export const seedMyCourses = async () => {
     console.error('❌ Lỗi seed MyCourse:', error);
   }
 };
-seedMyCourses().then()

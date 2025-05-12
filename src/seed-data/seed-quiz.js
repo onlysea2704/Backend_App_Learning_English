@@ -6,31 +6,31 @@ export const seedQuizes = async() => {
             {
               name_quiz: 'Quiz HTML Cơ bản',
               description: 'Kiểm tra kiến thức về các thẻ HTML cơ bản.',
-              id_lesson: 1,
+              id_lesson: 2,
               score: 10
             },
             {
               name_quiz: 'Quiz CSS',
               description: 'Câu hỏi về cách định dạng giao diện bằng CSS.',
-              id_lesson: 1,
+              id_lesson: 4,
               score: 15
             },
             {
               name_quiz: 'Quiz JavaScript cơ bản',
               description: 'Câu hỏi về cú pháp, biến và hàm trong JavaScript.',
-              id_lesson: 2,
+              id_lesson: 6,
               score: 20
             },
             {
               name_quiz: 'Quiz DOM & Events',
               description: 'Kiểm tra kiến thức về thao tác DOM và sự kiện JS.',
-              id_lesson: 2,
+              id_lesson: 8,
               score: 25
             },
             {
               name_quiz: 'Quiz ReactJS',
               description: 'Quiz về component, props, state trong React.',
-              id_lesson: 3,
+              id_lesson: 10,
               score: 30
             }
           ]);

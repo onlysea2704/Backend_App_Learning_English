@@ -11,6 +11,7 @@ import { seedQuizes } from "./seed-quiz.js";
 import { seedResponses } from "./seed-response.js";
 import { seedStudents } from "./seed-student.js";
 import { seedUsers } from "./seed-user.js";
+import { seedLectureres } from "./seed-lecturer.js";
 
 const clearDatabase = async () => {
     try {
@@ -21,6 +22,7 @@ const clearDatabase = async () => {
         await db.Quiz.destroy({ where: {} });
         await db.Lesson.destroy({ where: {} });
         await db.Lecture.destroy({ where: {} });
+        await db.Lecturer.destroy({ where: {} });
         await db.Course.destroy({ where: {} });
         await db.Student.destroy({ where: {} });
         await db.User.destroy({ where: {} });
@@ -29,9 +31,10 @@ const clearDatabase = async () => {
         await db.sequelize.query('ALTER TABLE questions AUTO_INCREMENT = 1');
         await db.sequelize.query('ALTER TABLE comments AUTO_INCREMENT = 1');
         await db.sequelize.query('ALTER TABLE my_courses AUTO_INCREMENT = 1');
-        await db.sequelize.query('ALTER TABLE quizes AUTO_INCREMENT = 1');
+        await db.sequelize.query('ALTER TABLE quizzes AUTO_INCREMENT = 1');
         await db.sequelize.query('ALTER TABLE lessons AUTO_INCREMENT = 1');
         await db.sequelize.query('ALTER TABLE lectures AUTO_INCREMENT = 1');
+        await db.sequelize.query('ALTER TABLE lecturers AUTO_INCREMENT = 1');
         await db.sequelize.query('ALTER TABLE courses AUTO_INCREMENT = 1');
         await db.sequelize.query('ALTER TABLE students AUTO_INCREMENT = 1');
         await db.sequelize.query('ALTER TABLE users AUTO_INCREMENT = 1');
@@ -53,7 +56,7 @@ const seedData = async () => {
     await seedResponses();
     await seedComments();
     await seedMyCourses();
-    await seedLectures();
+    await seedLectureres();
 }
 
 await clearDatabase().then()
