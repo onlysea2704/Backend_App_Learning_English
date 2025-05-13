@@ -13,13 +13,16 @@ export const checkExistResult = async (req, res) => {
     }
 }
 
-export const getAllResponseByIdQuiz = async (req, res) => {
+export const getAllResponseByIdLesson = async (req, res) => {
     const idUser = req.user.id;
+    const idLesson = req.body.idLesson;
+    const quiz = db.Quiz.findOne({ where: { id_lesson: idLesson } });
     const idStudent = db.Student.findOne({ where: { id_user: idUser }, attributes: ['id_student'] });
-    const idResult = db.Result.findOne({ where: { id_student: idStudent, id_quiz: idQuiz } });
-    const responses = db.Response.findAll({where: {id_result: idResult}});
 
-    return res.json({responses})
+    const idResult = db.Result.findOne({ where: { id_student: idStudent, id_quiz: quiz.id_quiz } });
+    const responses = db.Response.findAll({ where: { id_result: idResult } });
+
+    return res.json({ responses })
 }
 
 export const createResponse = async (req, res) => {
