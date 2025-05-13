@@ -2,7 +2,7 @@ import db from "../models/index.js";
 
 export const getAllQuestionByQuizId = async (req, res) => {
 
-    // const idUser = req.user.id;
+    // const idUser = req.user.id_user;
     // const idStudent = await db.Student.findOne({ where: { id_user: idUser }, attributes: ['id_student'] })
     const idQuiz = req.body.idQuiz;
     // const idLesson = await db.Quiz.findOne({ where: { id_quiz: idQuiz }, attributes: ['id_lesson'] })

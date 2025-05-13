@@ -1,38 +1,28 @@
 import db from "../models/index.js";
+import { faker } from '@faker-js/faker';
 
 export const seedStudents = async () => {
     try {
-        await db.Student.bulkCreate([
-            {
-                name: 'Nguyễn Văn A',
-                age: 20,
-                gender: 'Nam',
-                phone: '0901234567',
-                email: 'nguyenvana@example.com',
-                link_image: 'https://example.com/images/a.jpg',
-                id_user: 1
-            },
-            {
-                name: 'Trần Thị B',
-                age: 22,
-                gender: 'Nữ',
-                phone: '0902345678',
-                email: 'tranthib@example.com',
-                link_image: 'https://example.com/images/b.jpg',
-                id_user: 2
-            },
-            {
-                name: 'Lê Văn C',
-                age: 19,
-                gender: 'Nam',
-                phone: '0903456789',
-                email: 'levanc@example.com',
-                link_image: 'https://example.com/images/c.jpg',
-                id_user: 3
-            }
-        ]);
-        console.log('✅ Seed dữ liệu cho bảng students thành công.');
+        const users = await db.User.findAll(); // Lấy tất cả user
+
+        if (!users || users.length === 0) {
+            console.log("❌ Không tìm thấy user nào để tạo student.");
+            return;
+        }
+        const students = users.map(user => ({
+            name: faker.person.fullName(),
+            age: faker.number.int({ min: 18, max: 30 }),
+            gender: faker.helpers.arrayElement(['Nam', 'Nữ']),
+            phone: faker.phone.number('090########'),
+            email: faker.internet.email(),
+            link_image: faker.image.avatar(),
+            id_user: user.id_user
+        }));
+
+        await db.Student.bulkCreate(students);
+        console.log('✅ Seed dữ liệu cho bảng students thành công từ user.');
     } catch (error) {
         console.error('❌ Lỗi khi seed dữ liệu cho students:', error);
     }
-}
+};
+// seedStudents().then()

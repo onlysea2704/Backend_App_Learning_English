@@ -9,11 +9,11 @@ import lessonRoutes from "./routes/lesson.router.js"
 import questionRoutes from "./routes/question.router.js"
 import commentRoutes from "./routes/comment.router.js"
 import resultRoutes from "./routes/result.router.js"
+import responseRoutes from "./routes/response.router.js"
 
 dotenv.config()
 
 await db.sequelize.sync(); // chạy lệnh tạo bảng nếu chưa có
-
 
 const app = express()
 app.use(express.json())
@@ -25,6 +25,7 @@ app.use('/lesson',lessonRoutes)
 app.use('/question',questionRoutes)
 app.use('/comment',commentRoutes)
 app.use('/result',resultRoutes)
+app.use('/response',responseRoutes)
 
 const port = process.env.SERVER_PORT
 app.listen(port, () => {

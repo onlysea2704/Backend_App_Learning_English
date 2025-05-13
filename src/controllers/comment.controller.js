@@ -4,7 +4,6 @@ export const getAllCommentByIdCourse = async (req, res) => {
 
     // input {idCourse}
     const idCourse = req.body.idCourse;
-    console.log('idCourse: ', idCourse);
     const results = await db.sequelize.query(`
         select id_comment, comment, name from comments
         left join students on comments.id_student = students.id_student
@@ -20,8 +19,7 @@ export const getAllCommentByIdCourse = async (req, res) => {
 
 export const createComment = async (req, res) => {
     // input {idCourse, content}
-    console.log(123)
-    const idUser = req.user.id;
+    const idUser = req.user.id_user;
     const idCourse = req.body.idCourse;
     const content = req.body.content;
     const idStudent = await db.Student.findOne({ where: { id_user: idUser } });

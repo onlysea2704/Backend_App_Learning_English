@@ -4,6 +4,6 @@ import multer from "multer"
 import { getResultByIdLesson } from "../controllers/result.controller.js"
 
 const router = express.Router()
-router.get('/get-result-by-id-lesson', checkUser, getResultByIdLesson)
+router.post('/get-result-by-id-lesson', checkUser, getResultByIdLesson)
 
 export default router;

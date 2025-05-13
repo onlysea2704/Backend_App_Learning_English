@@ -47,7 +47,6 @@ const clearDatabase = async () => {
 
 const seedData = async () => {
     await seedUsers();
-    await seedStudents();
     await seedCourses();
     await seedLectures();
     await seedLessons();
@@ -57,6 +56,7 @@ const seedData = async () => {
     await seedComments();
     await seedMyCourses();
     await seedLectureres();
+    await seedStudents();
 }
 
 await clearDatabase().then()

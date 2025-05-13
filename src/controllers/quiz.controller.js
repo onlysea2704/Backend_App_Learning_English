@@ -1,6 +1,6 @@
 import db from "../models/index.js";
 
-export const getQuizByIdByIdLesson = async (req, res) => {
+export const getQuizByIdLesson = async (req, res) => {
     // input {idLesson}
     const idLesson = req.body.idLesson;
     try {
@@ -11,6 +11,7 @@ export const getQuizByIdByIdLesson = async (req, res) => {
         return res.status(500).json({ error: error.message });
     }
 }
+
 
 export const createQuiz = async (req, res) => {
     // input {idCourse, typeLesson}

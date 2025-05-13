@@ -4,7 +4,7 @@ import cloudinary from "../config/cloudinary.js";
 import fs from 'fs'
 
 export const getAllCourse = async (req, res) => {
-    const idUser = req.user.id;
+    const idUser = req.user.id_user;
     const myCourses = await db.MyCourse.findAll({
         where: { id_student: idUser },
     });
@@ -17,9 +17,9 @@ export const getAllCourse = async (req, res) => {
 }
 
 export const getMyCourses = async (req, res) => {
-    const idUser = req.user.id;
+    const idUser = req.user.id_user;
     const myCourses = await db.MyCourse.findAll({
-        where: { id_student: req.user.id },
+        where: { id_student: req.user.id_user },
     });
     const listMyCourses = myCourses.map(myCourse => myCourse.id_course)
     const courses = await db.Course.findAll({
