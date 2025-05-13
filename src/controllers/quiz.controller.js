@@ -1,11 +1,15 @@
 import db from "../models/index.js";
 
-export const getQuizById = async (req, res) => {
-    // input {idQuiz}
-    const idQuiz = req.body.idQuiz;
-
-    const quiz = db.Quiz.findOne({ where: { id_quiz: idQuiz } })
-    return res.json(quiz)
+export const getQuizByIdByIdLesson = async (req, res) => {
+    // input {idLesson}
+    const idLesson = req.body.idLesson;
+    try {
+        const quiz = await db.Quiz.findOne({ where: { id_lesson: idLesson } })
+        return res.json(quiz)
+    } catch (error) {
+        console.log('error: ', error.message);
+        return res.status(500).json({ error: error.message });
+    }
 }
 
 export const createQuiz = async (req, res) => {
@@ -32,5 +36,5 @@ export const updateQuiz = async (req, res) => {
 }
 
 export const deleteQuiz = async (req, res) => {
-    
+
 }

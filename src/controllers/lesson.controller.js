@@ -27,21 +27,49 @@ export const getAllLessonByIdCourse = async (req, res) => {
     }
 }
 
-export const getLectureById = async (req, res) => {
-
-    // input {idLecture}
+export const getInfoLesson = async (req, res) => {
+    // input {idLesson}
     const idLesson = req.body.idLesson;
-    const lecture = db.Lecture.findOne({ where: { id_lesson: idLesson } })
-    return res.json({ lecture })
+    try {
+        const lesson = await db.Lesson.findOne({ where: { id_lesson: idLesson } })
+        if (!lesson) {
+            return res.status(404).json({ message: "Lesson not found" });
+        }
+        return res.json(lesson);
+    } catch (error) {
+        console.log('error: ', error.message);
+        return res.status(500).json({ error: error.message });
+    }
 }
 
-export const getQuizById = async (req, res) => {
+export const checkCompleteLesson = async (req, res) => {
+    const idLesson = req.body.idLesson;
+    const idUser = req.user.id;
+    const student = await db.Student.findOne({ where: { id_user: idUser } });
+    const isComplete = await db.Progress.findOne({ where: { id_student: student.id_student, id_lesson: idLesson } });
 
-    // input {idQuiz}
-    const idLesson = req.body.id;
-    const quiz = db.Quiz.findOne({ where: { id_lesson: idLesson } })
-    return res.json({ quiz })
+    if (isComplete) {
+        return res.json({ status: true });
+    } else {
+        return res.json({ status: false });
+    }
 }
+
+// export const getLectureById = async (req, res) => {
+
+//     // input {idLecture}
+//     const idLesson = req.body.idLesson;
+//     const lecture = db.Lecture.findOne({ where: { id_lesson: idLesson } })
+//     return res.json({ lecture })
+// }
+
+// export const getQuizById = async (req, res) => {
+
+//     // input {idQuiz}
+//     const idLesson = req.body.id;
+//     const quiz = db.Quiz.findOne({ where: { id_lesson: idLesson } })
+//     return res.json({ quiz })
+// }
 
 export const createLesson = async (req, res) => {
     return res.json({ status: true })
