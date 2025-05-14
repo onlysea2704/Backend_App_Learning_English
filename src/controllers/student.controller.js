@@ -21,8 +21,8 @@ export const updateStudentInfoById = async (req, res) => {
         const result = await cloudinary.uploader.upload(filePath, {
             resource_type: 'image'
         });
-        studentInfo.link_image = result.url
-        // fs.unlinkSync(filePath);
+        studentInfo.link_image = result.url;
+        fs.unlinkSync(filePath);
     }
     const result = await db.Student.update({ ...studentInfo }, { where: { id_user: idUser } })
     return res.json({ status: "success" })
