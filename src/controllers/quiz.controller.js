@@ -43,8 +43,10 @@ export const deleteQuiz = async (req, res) => {
 export const submitAnswer = async (req, res) => {
     try {
         const idUser = req.user.id_user
-        const idStudent = db.Student.findOne({ where: { id_user: idUser } })
-        const { id_quiz } = req.body;
+
+        const student = await db.Student.findOne({ where: { id_user: idUser } })
+        const { idLesson } = req.body;
+        const quiz = await db.Quiz.findOne({ where: { id_lesson: idLesson } })
         let answers = [];
 
         console.log('req.body: ', req.body);
@@ -52,7 +54,6 @@ export const submitAnswer = async (req, res) => {
             id_question: ans.id_question,
             answer: ans.answer
         }));
-        // console.log("Parsed Answers: ", answers);
 
         // Upload các file mp3 lên Cloudinary và cập nhật đường dẫn
         if (req.files && req.files.length > 0) {
@@ -70,53 +71,74 @@ export const submitAnswer = async (req, res) => {
         }
 
         // Chấm điểm
+        let sumScore = 0
+        const newResult = await db.Result.create({
+            id_student: student.id_student,
+            id_quiz: quiz.id_quiz,
+        })
         answers.map(async (ans) => {
             const question = await db.Question.findOne({ where: { id_question: ans.id_question } });
             if (question.type_question === "reading") {
                 const score = question.answer === ans.answer ? question.scale : 0
+                sumScore += score
                 await db.Response.create({
-                    id_student: idStudent.id_student,
+                    id_student: student.id_student,
                     id_question: question.id_question,
                     response: ans.answer,
                     type_response: question.type_question,
                     score: score,
+                    id_result: newResult.id_result,
                 })
             } else if (question.type_question === "listening") {
                 const score = question.answer === answers.answer ? question.scale : 0
+                sumScore += score
                 await db.Response.create({
-                    id_student: idStudent.id_student,
+                    id_student: student.id_student,
                     id_question: question.id_question,
                     response: ans.answer,
                     type_response: question.type_question,
                     score: score,
+                    id_result: newResult.id_result,
                 })
             } else if (question.type_question === "speaking") {
                 const result = await scoreSpeakingAI(question.question, ans.filePath);
+                sumScore += result?.score
                 await db.Response.create({
-                    id_student: idStudent.id_student,
+                    id_student: student.id_student,
                     id_question: question.id_question,
-                    link_mp3: ans.answer,
+                    link_mp3: ans.urlCloudinary,
                     type_response: question.type_question,
-                    score: result.score,
+                    score: result?.score,
                     comment: result.comment + '\n' + result.suggest,
+                    id_result: newResult.id_result,
                 })
             } else if (question.type_question === "writing") {
                 const result = await ScoreWritingAI(question.question, ans.answer);
+                sumScore += result?.score
                 await db.Response.create({
-                    id_student: idStudent.id_student,
+                    id_student: student.id_student,
                     id_question: question.id_question,
                     response: ans.answer,
                     type_response: question.type_question,
-                    score: result.score,
+                    score: result?.score,
                     comment: result.comment + '\n' + result.suggest,
+                    id_result: newResult.id_result,
                 })
             }
+        })
+        await db.Result.update(
+            { score: sumScore }, // Dữ liệu cần cập nhật
+            { where: { id_result: newResult.id_result } }               // Điều kiện cập nhật
+        );
+        await db.Progress.create({
+            id_student: student.id_student,
+            id_lesson: idLesson
         })
 
         res.status(200).json({
             message: 'Answers submitted successfully',
             data: {
-                id_quiz,
+                idQuiz: quiz.id_quiz,
                 answers,
             },
         });

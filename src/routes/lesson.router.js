@@ -13,6 +13,6 @@ router.post('/get-lecture-by-id-lesson', getLectureByIdLesson); // checkUser
 router.post('/get-quiz-by-id-lesson', getQuizByIdLesson); // checkUser
 router.post('/get-info-lesson', getInfoLesson);
 router.post('/check-complete-lesson',checkUser, checkCompleteLesson);
-router.post('/submit-answers', checkUser,upload.array('files'), submitAnswer)
+router.post('/submit-answers', checkUser, upload.array('files'), submitAnswer)
 
 export default router;

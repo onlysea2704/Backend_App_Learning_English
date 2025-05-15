@@ -46,13 +46,9 @@ export const checkCompleteLesson = async (req, res) => {
     try {
         const idLesson = req.body.idLesson;
         const idUser = req.user.id_user;
-        console.log('-------------------')
-        console.log('idUser: ', idUser);
         const student = await db.Student.findOne({ where: { id_user: idUser } });
-        const idStudent = await db.Student.findOne({ where: { id_user: idUser } });
     
-        console.log('student: ', student);
-        const isComplete = await db.Progress.findOne({ where: { id_student: idStudent.id_student, id_lesson: idLesson } });
+        const isComplete = await db.Progress.findOne({ where: { id_student: student.id_student, id_lesson: idLesson } });
         if (isComplete) {
             return res.json({ status: true });
         } else {

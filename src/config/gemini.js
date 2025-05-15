@@ -35,7 +35,7 @@ function fileToGenerativePart(path, mimeType) {
 export const scoreSpeakingAI = async (topic, pathFile) => {
 
   if (!pathFile) {
-    return res.status(400).json({ error: "No file uploaded" });
+    return;
   }
 
   topic = topic || "Describe a difficult decision you had to make";
