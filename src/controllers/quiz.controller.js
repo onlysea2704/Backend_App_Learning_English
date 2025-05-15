@@ -1,6 +1,7 @@
 import db from "../models/index.js";
 import cloudinary from "../config/cloudinary.js";
 import fs, { link } from "fs";
+import { scoreSpeakingAI, ScoreWritingAI } from "../config/gemini.js";
 
 export const getQuizByIdLesson = async (req, res) => {
     // input {idLesson}
@@ -51,7 +52,7 @@ export const submitAnswer = async (req, res) => {
             id_question: ans.id_question,
             answer: ans.answer
         }));
-        console.log("Parsed Answers: ", answers);
+        // console.log("Parsed Answers: ", answers);
 
         // Upload các file mp3 lên Cloudinary và cập nhật đường dẫn
         if (req.files && req.files.length > 0) {
@@ -61,8 +62,9 @@ export const submitAnswer = async (req, res) => {
                     const result = await cloudinary.uploader.upload(file.path, {
                         resource_type: "video", // cloudinary xem mp3 là video
                     });
-                    match.answer = result.url; // Cập nhật answer thành URL Cloudinary
-                    fs.unlinkSync(file.path); // Xóa file tạm trên server
+                    match.urlCloudinary = result.url;
+                    match.filePath = file.path; // Cập nhật answer thành URL Cloudinary
+                    // fs.unlinkSync(file.path); // Xóa file tạm trên server
                 }
             }
         }
@@ -89,20 +91,24 @@ export const submitAnswer = async (req, res) => {
                     score: score,
                 })
             } else if (question.type_question === "speaking") {
+                const result = await scoreSpeakingAI(question.question, ans.filePath);
                 await db.Response.create({
                     id_student: idStudent.id_student,
                     id_question: question.id_question,
                     link_mp3: ans.answer,
                     type_response: question.type_question,
-                    // score: score,
+                    score: result.score,
+                    comment: result.comment + '\n' + result.suggest,
                 })
             } else if (question.type_question === "writing") {
+                const result = await ScoreWritingAI(question.question, ans.answer);
                 await db.Response.create({
                     id_student: idStudent.id_student,
                     id_question: question.id_question,
                     response: ans.answer,
                     type_response: question.type_question,
-                    // score: score,
+                    score: result.score,
+                    comment: result.comment + '\n' + result.suggest,
                 })
             }
         })
