@@ -11,6 +11,7 @@ import commentRoutes from "./routes/comment.router.js"
 import resultRoutes from "./routes/result.router.js"
 import responseRoutes from "./routes/response.router.js"
 import paymentRoutes from "./routes/payment.router.js"
+import { urlNgrok } from './config/ngrok.js';
 
 dotenv.config()
 
@@ -32,4 +33,5 @@ app.use('/payment',paymentRoutes)
 const port = process.env.SERVER_PORT
 app.listen(port, () => {
     console.log(`Server đang chạy tại http://localhost:${port}`)
+    console.log(`Server đang chạy tại Ngrok:  ${urlNgrok}`)
 })

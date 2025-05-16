@@ -3,27 +3,28 @@ import { configZaloPay } from "../config/zalopay.js";
 import CryptoJS from "crypto-js";
 import moment from "moment";
 import axios from "axios";
+import { urlNgrok } from "../config/ngrok.js";
 
 export const CreateBill = async (req, res) => {
 
     const idCourse = req.body.idCourse
     const infoCourse = await db.Course.findOne({ where: { id_course: idCourse } })
-    const embed_data = { redirecturl: "https://student-hustenglish-system.vercel.app/coursedetail/1" };
+    const embed_data = { redirecturl: `https://student-hustenglish-system.vercel.app/coursedetail/${idCourse}` };
     const items = [infoCourse];
     let x = infoCourse.price + 10000
     const transID = Math.floor(Math.random() * 1000000);
     const order = {
         app_id: configZaloPay.appid,
         app_trans_id: `${moment().format('YYMMDD')}_${transID}`, // translation missing: vi.docs.shared.sample_code.comments.app_trans_id
-        app_user: "123456",
+        app_user: "123456", // thay cái này bằng userId
         app_time: Date.now(), // miliseconds
         item: JSON.stringify(items),
         embed_data: JSON.stringify(embed_data),
-        amount: Number(10000) + Number(infoCourse.price)*100, // + tạm 10000 cho đỡ lỗi vì giá đang rất nhỏ
+        amount: Number(10000) + Number(infoCourse.price) * 100, // + tạm 10000 cho đỡ lỗi vì giá đang rất nhỏ
         // Lưu ý giá tiền phải chẵn mới thanh toán được
         description: `Thanh Toán Khóa Học ${infoCourse.name_course} #${transID}`,
         bank_code: "",
-        callback_url: "https://2d47-2402-800-6d3e-b434-500d-ff04-636-53ca.ngrok-free.app/callback"
+        callback_url: `${urlNgrok}/payment/confirm-payment`
     };
 
     // appid|app_trans_id|appuser|amount|apptime|embeddata|item
@@ -32,9 +33,49 @@ export const CreateBill = async (req, res) => {
 
     try {
         const result = await axios.post(configZaloPay.endpoint, null, { params: order })
-        console.log(result.data)
+        // console.log(result.data)
         res.json(result.data)
     } catch (error) {
         console.log(error.message)
     }
+}
+
+export const ConfirmPayment = async (req, res) => {
+    let result = {};
+    console.log('------------------------------------')
+    console.log(req.body)
+    try {
+        console.log('111111111111111111111111111111111')
+        let dataStr = req.body.data;
+        let reqMac = req.body.mac;
+        let mac = CryptoJS.HmacSHA256(dataStr, configZaloPay.key2).toString();
+        console.log('22222222222222222222222')
+        console.log("mac =", mac);
+        console.log('33333333333333333333333')
+
+        // kiểm tra callback hợp lệ (đến từ ZaloPay server)
+        if (reqMac !== mac) {
+            // callback không hợp lệ
+            result.return_code = -1;
+            result.return_message = "mac not equal";
+            console.log("Mac không hợp lệ")
+        }
+        else {
+            // thanh toán thành công
+            // merchant cập nhật trạng thái cho đơn hàng
+            let dataJson = JSON.parse(dataStr, configZaloPay.key2);
+            console.log(req.body.data)
+            console.log("update order's status = success where app_trans_id =", dataJson["app_trans_id"]);
+
+            result.return_code = 1;
+            result.return_message = "success";
+        }
+    } catch (ex) {
+        result.return_code = 0; // ZaloPay server sẽ callback lại (tối đa 3 lần)
+        console.log(ex.message);
+        result.return_message = ex.message;
+    }
+
+    // thông báo kết quả cho Client
+    return res.json(result);
 }
