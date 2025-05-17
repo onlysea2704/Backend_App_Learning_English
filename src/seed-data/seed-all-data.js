@@ -13,6 +13,7 @@ import { seedStudents } from "./seed-student.js";
 import { seedUsers } from "./seed-user.js";
 import { seedLectureres } from "./seed-lecturer.js";
 import { seedResult } from "./seed-result.js";
+import { seedCourseTest } from "./seed-test-entry.js";
 
 const clearDatabase = async () => {
     try {
@@ -28,6 +29,7 @@ const clearDatabase = async () => {
         await db.Student.destroy({ where: {} });
         await db.User.destroy({ where: {} });
         await db.Result.destroy({ where: {} });
+        await db.Progress.destroy({ where: {} });
 
         await db.sequelize.query('ALTER TABLE responses AUTO_INCREMENT = 1');
         await db.sequelize.query('ALTER TABLE questions AUTO_INCREMENT = 1');
@@ -41,6 +43,7 @@ const clearDatabase = async () => {
         await db.sequelize.query('ALTER TABLE students AUTO_INCREMENT = 1');
         await db.sequelize.query('ALTER TABLE users AUTO_INCREMENT = 1');
         await db.sequelize.query('ALTER TABLE results AUTO_INCREMENT = 1');
+        await db.sequelize.query('ALTER TABLE progresses AUTO_INCREMENT = 1');
 
         console.log('✔️ Đã xóa sạch dữ liệu trong database.');
     } catch (err) {
@@ -57,10 +60,12 @@ const seedData = async () => {
     // await seedResult();
     await seedQuestions();
     // await seedResponses();
+    // await seedProgress();
     await seedComments();
     await seedMyCourses();
     await seedLectureres();
     await seedStudents();
+    await seedCourseTest();
 }
 
 await clearDatabase().then()

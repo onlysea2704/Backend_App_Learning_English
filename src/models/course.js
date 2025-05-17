@@ -10,7 +10,7 @@ const Course = sequelize.define('Course', {
     name_course: DataTypes.STRING,
     description: DataTypes.TEXT,
     type_course: DataTypes.STRING,
-    price: DataTypes.DECIMAL(10,2),
+    price: DataTypes.DECIMAL(10),
     link_image: DataTypes.STRING,
     number_lesson: DataTypes.INTEGER,
     number_student: DataTypes.INTEGER,

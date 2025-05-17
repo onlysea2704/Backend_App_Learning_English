@@ -1,6 +1,6 @@
 import db from "../models/index.js";
 import cloudinary from "../config/cloudinary.js";
-
+import fs from "fs"
 export const getStudentInfoById = async (req, res) => {
     try {
         const idUser = req.user.id_user

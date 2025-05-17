@@ -16,6 +16,14 @@ export const getAllCourse = async (req, res) => {
     return res.json(courses)
 }
 
+export const getPopularCourse = async (req, res) => {
+    const popularCourses = await db.Course.findAll({
+        order: [['number_student', 'DESC']],
+        limit: 4
+    });
+    return res.json(popularCourses)
+}
+
 export const getMyCourses = async (req, res) => {
     const idUser = req.user.id_user;
     const myCourses = await db.MyCourse.findAll({

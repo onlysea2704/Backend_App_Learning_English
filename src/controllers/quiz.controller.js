@@ -64,7 +64,6 @@ export const submitAnswer = async (req, res) => {
                     });
                     match.urlCloudinary = result.url;
                     match.filePath = file.path; // Cập nhật answer thành URL Cloudinary
-                    // fs.unlinkSync(file.path); // Xóa file tạm trên server
                 }
             }
         }

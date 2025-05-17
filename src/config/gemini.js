@@ -39,7 +39,7 @@ export const scoreSpeakingAI = async (topic, pathFile) => {
   }
 
   topic = topic || "Describe a difficult decision you had to make";
-  const prompt = `Tôi có 1 file speaking sau về chủ đề \"${topic}\". Hãy giúp tôi 3 việc sau: đầu tiên là chấm điểm, thứ 2 là nhận xét (bằng tiếng việt) về nội dung, đưa ra lỗi sai phát âm (nếu có) và thứ 3 là hoàn thiện bài speaking trên (bằng tiếng anh) tốt hơn`;
+  const prompt = `Tôi có 1 file speaking sau về chủ đề \"${topic}\". Hãy giúp tôi 3 việc sau: đầu tiên là chấm điểm (chấm thật chặt chẽ trên thang 10), thứ 2 là nhận xét (bằng tiếng việt) về nội dung, đưa ra lỗi sai phát âm (nếu có) và thứ 3 là hoàn thiện bài speaking trên (bằng tiếng anh) tốt hơn`;
 
   const audioPart = fileToGenerativePart(pathFile, "audio/mp3");
 
@@ -57,7 +57,7 @@ export const scoreSpeakingAI = async (topic, pathFile) => {
 };
 
 export const ScoreWritingAI = async (topic, response) => {
-    const prompt = `Tôi có 1 bài writing về chủ đề \"${topic}\". Hãy giúp tôi 3 việc sau: đầu tiên là chấm điểm, thứ 2 là nhận xét (bằng tiếng việt) về nội dung, đưa ra lỗi sai ngữ pháp (nếu có) và thứ 3 là hoàn thiện bài writing trên (bằng tiếng anh) tốt hơn. Dưới đây là nội dung bài viết: ${response}`;
+    const prompt = `Tôi có 1 bài writing về chủ đề \"${topic}\". Hãy giúp tôi 3 việc sau: đầu tiên là chấm điểm (chấm thật chặt chẽ trên thang 10), thứ 2 là nhận xét (bằng tiếng việt) về nội dung, đưa ra lỗi sai ngữ pháp (nếu có) và thứ 3 là hoàn thiện bài writing trên (bằng tiếng anh) tốt hơn. Dưới đây là nội dung bài viết: ${response}`;
     const result = await modelAI.generateContent(prompt);
     const responseText = result.response.text();
     const jsonResponse = JSON.parse(responseText);

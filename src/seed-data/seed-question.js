@@ -876,19 +876,22 @@ export const seedQuestions = async () => {
     try {
         let questions = []
         for (let i = 1; i <= 200; i++) {
-            Array.from({ length: 5 }).map(() => {
+            Array.from({ length: 3 }).map(() => {
                 const randomNumber = Math.floor(Math.random() * 30);
                 questions.push({
                     ...readingQuestions[randomNumber],
                     id_quiz: i
                 })
             });
-            Array.from({ length: 3 }).map(() => {
+            Array.from({ length: 2 }).map(() => {
                 const randomNumber = Math.floor(Math.random() * 20);
                 questions.push({
                     ...listeningQuestions[randomNumber],
                     id_quiz: i
                 })
+            });
+            const randomNumber = Math.floor(Math.random() * 10);
+            if (i % 2 === 1) {
                 questions.push({
                     ...writingQuestions[randomNumber],
                     id_quiz: i
@@ -897,8 +900,7 @@ export const seedQuestions = async () => {
                     ...speakingQuestions[randomNumber],
                     id_quiz: i
                 });
-            });
-
+            }
         }
         await db.Question.bulkCreate(questions);
         console.log('✅ Đã thêm dữ liệu vào bảng quizes')

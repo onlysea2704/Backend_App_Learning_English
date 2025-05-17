@@ -20,7 +20,6 @@ export const seedResult = async () => {
     } catch (error) {
         console.error("Error seeding Result: ", error);
     }
-
 }
 
-seedResult().then()
+// seedResult().then()
