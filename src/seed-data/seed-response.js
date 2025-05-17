@@ -109,8 +109,8 @@ export const seedResponses = async() => {
         console.log('✅ Đã seed dữ liệu vào bảng responses')
     } catch (error) {
         console.log('', error.message)
-        console.log('❌ Lỗi khi seed dữ liệu vào bảng responses')
+        console.log('❌ Lỗi khi seed dữ liệu vào bảng responses', error.message)
     }
 }
 
-seedResponses().then()
+// seedResponses().then()

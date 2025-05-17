@@ -37,4 +37,4 @@ export const seedStudents = async () => {
     console.error('❌ Lỗi khi seed dữ liệu cho students:', error);
   }
 };
-seedStudents().then()
+// seedStudents().then()

@@ -36,7 +36,6 @@ export const CreateBill = async (req, res) => {
 
     try {
         const result = await axios.post(configZaloPay.endpoint, null, { params: order })
-        // console.log(result.data)
         res.json(result.data)
     } catch (error) {
         console.log(error.message)
@@ -45,8 +44,6 @@ export const CreateBill = async (req, res) => {
 
 export const ConfirmPayment = async (req, res) => {
     let result = {};
-    console.log('------------------------------------')
-    console.log(req.body)
     try {
         let dataStr = req.body.data;
         let reqMac = req.body.mac;
@@ -64,8 +61,6 @@ export const ConfirmPayment = async (req, res) => {
             // thanh toán thành công
             // merchant cập nhật trạng thái cho đơn hàng
             let dataJson = JSON.parse(dataStr, configZaloPay.key2);
-            // console.log(req.body.data)
-            // console.log("update order's status = success where app_trans_id =", dataJson["app_trans_id"]);
             const idCourse = JSON.parse(dataJson["item"])[0].id_course
 
             await db.MyCourse.create({

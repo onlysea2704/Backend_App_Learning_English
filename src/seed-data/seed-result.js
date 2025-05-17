@@ -16,11 +16,11 @@ const results = [
 export const seedResult = async () => {
     try {
         await db.Result.bulkCreate(results);
-        console.log("Seed Result successfully");
+        console.log("✅ Seed Result successfully");
     } catch (error) {
         console.error("Error seeding Result: ", error);
     }
 
 }
 
-// seedResult().then()
+seedResult().then()

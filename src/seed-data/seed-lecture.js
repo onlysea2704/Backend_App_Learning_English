@@ -1,6 +1,46 @@
 import db from "../models/index.js";
 
-const commonLectures = [
+const englishLectures = [
+    {
+        name_lecture: 'Introduction to English Grammar',
+        description: 'An overview of the fundamental rules of English grammar.'
+    },
+    {
+        name_lecture: 'Building English Vocabulary',
+        description: 'Techniques and tips to expand your English vocabulary.'
+    },
+    {
+        name_lecture: 'English Tenses Explained',
+        description: 'Detailed explanations of various English tenses with examples.'
+    },
+    {
+        name_lecture: 'Improving Reading Comprehension',
+        description: 'Strategies to enhance your ability to understand English texts.'
+    },
+    {
+        name_lecture: 'Effective Listening Skills',
+        description: 'Methods to improve your English listening and understanding.'
+    },
+    {
+        name_lecture: 'Speaking English Confidently',
+        description: 'Tips and exercises to boost your English speaking skills.'
+    },
+    {
+        name_lecture: 'Writing Clear Sentences',
+        description: 'Learn how to write clear and effective English sentences.'
+    },
+    {
+        name_lecture: 'Common English Idioms',
+        description: 'Explore popular English idioms and their meanings.'
+    },
+    {
+        name_lecture: 'Business English Essentials',
+        description: 'Key vocabulary and phrases for professional business communication.'
+    },
+    {
+        name_lecture: 'Pronunciation and Accent Training',
+        description: 'Practice exercises to improve your English pronunciation.'
+    },
     {
         name_lecture: 'Introduction to Basic English',
         description: 'This lecture provides a comprehensive overview of the fundamental English skills that every beginner needs to master. You will learn essential vocabulary, simple sentence structures, and common expressions to help you start communicating effectively in English.',
@@ -65,26 +105,18 @@ const commonLectures = [
 
 export const seedLectures = async () => {
     try {
-        // await db.Lecture.bulkCreate(lectures.map((lecture) => ({
-        //     ...lecture,
-        //     id_lesson: random()
-        // })) );
-        let lectures = commonLectures.flatMap((commonLecture, index) => {
-            let lectures = []
-            for (let i = 1; i <= 20; i++) {
-                lectures.push({
-                    ...commonLecture,
-                    id_lesson: index*2+1 +(i-1)*2 + (i-1)*20
-                })
-                console.log(index*2+1 +(i-1)*2 + (i-1)*20)
-            }
-            return lectures
-        })
-        // await db.Lecture.bulkCreate(lectures);
+        let lectures = []
+        for (let i = 1; i <= 400; i += 2) {
+            const randomNumber = Math.floor(Math.random() * 20);
+            lectures.push({
+                ...englishLectures[randomNumber],
+                id_lesson: i,
+            })
+        }
+        await db.Lecture.bulkCreate(lectures);
 
         console.log('✅ Đã thêm dữ liệu mẫu vào bảng lectures.');
     } catch (error) {
         console.log('Thêm dữ liệu vào bảng bị lỗi', error);
     }
 }
-seedLectures().then()

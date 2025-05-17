@@ -49,7 +49,6 @@ export const submitAnswer = async (req, res) => {
         const quiz = await db.Quiz.findOne({ where: { id_lesson: idLesson } })
         let answers = [];
 
-        console.log('req.body: ', req.body);
         answers = req.body.answers.map(ans => ({
             id_question: ans.id_question,
             answer: ans.answer
@@ -109,7 +108,7 @@ export const submitAnswer = async (req, res) => {
                     link_mp3: ans.urlCloudinary,
                     type_response: question.type_question,
                     score: result?.score,
-                    comment: result.comment + '\n' + result.suggest,
+                    comment: result?.comment + '\n' + result?.suggest,
                     id_result: newResult.id_result,
                 })
             } else if (question.type_question === "writing") {
@@ -121,7 +120,7 @@ export const submitAnswer = async (req, res) => {
                     response: ans.answer,
                     type_response: question.type_question,
                     score: result?.score,
-                    comment: result.comment + '\n' + result.suggest,
+                    comment: result?.comment + '\n' + result?.suggest,
                     id_result: newResult.id_result,
                 })
             }

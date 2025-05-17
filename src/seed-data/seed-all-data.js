@@ -12,6 +12,7 @@ import { seedResponses } from "./seed-response.js";
 import { seedStudents } from "./seed-student.js";
 import { seedUsers } from "./seed-user.js";
 import { seedLectureres } from "./seed-lecturer.js";
+import { seedResult } from "./seed-result.js";
 
 const clearDatabase = async () => {
     try {
@@ -26,6 +27,7 @@ const clearDatabase = async () => {
         await db.Course.destroy({ where: {} });
         await db.Student.destroy({ where: {} });
         await db.User.destroy({ where: {} });
+        await db.Result.destroy({ where: {} });
 
         await db.sequelize.query('ALTER TABLE responses AUTO_INCREMENT = 1');
         await db.sequelize.query('ALTER TABLE questions AUTO_INCREMENT = 1');
@@ -38,6 +40,7 @@ const clearDatabase = async () => {
         await db.sequelize.query('ALTER TABLE courses AUTO_INCREMENT = 1');
         await db.sequelize.query('ALTER TABLE students AUTO_INCREMENT = 1');
         await db.sequelize.query('ALTER TABLE users AUTO_INCREMENT = 1');
+        await db.sequelize.query('ALTER TABLE results AUTO_INCREMENT = 1');
 
         console.log('✔️ Đã xóa sạch dữ liệu trong database.');
     } catch (err) {
@@ -51,8 +54,9 @@ const seedData = async () => {
     await seedLectures();
     await seedLessons();
     await seedQuizes();
+    // await seedResult();
     await seedQuestions();
-    await seedResponses();
+    // await seedResponses();
     await seedComments();
     await seedMyCourses();
     await seedLectureres();
