@@ -9,6 +9,9 @@ export const CreateBill = async (req, res) => {
 
     const idCourse = req.body.idCourse
     const infoCourse = await db.Course.findOne({ where: { id_course: idCourse } })
+    const idUser = req.user.id_user
+    const student = await db.Student.findOne({where: {id_user: idUser}})
+
     const embed_data = { redirecturl: `https://student-hustenglish-system.vercel.app/coursedetail/${idCourse}` };
     const items = [infoCourse];
     let x = infoCourse.price + 10000
@@ -16,8 +19,8 @@ export const CreateBill = async (req, res) => {
     const order = {
         app_id: configZaloPay.appid,
         app_trans_id: `${moment().format('YYMMDD')}_${transID}`, // translation missing: vi.docs.shared.sample_code.comments.app_trans_id
-        app_user: "123456", // thay cái này bằng userId
-        app_time: Date.now(), // miliseconds
+        app_user: student.id_student, // thay cái này bằng userId
+        app_time: Date.now(), 
         item: JSON.stringify(items),
         embed_data: JSON.stringify(embed_data),
         amount: Number(10000) + Number(infoCourse.price) * 100, // + tạm 10000 cho đỡ lỗi vì giá đang rất nhỏ
@@ -45,13 +48,10 @@ export const ConfirmPayment = async (req, res) => {
     console.log('------------------------------------')
     console.log(req.body)
     try {
-        console.log('111111111111111111111111111111111')
         let dataStr = req.body.data;
         let reqMac = req.body.mac;
         let mac = CryptoJS.HmacSHA256(dataStr, configZaloPay.key2).toString();
-        console.log('22222222222222222222222')
         console.log("mac =", mac);
-        console.log('33333333333333333333333')
 
         // kiểm tra callback hợp lệ (đến từ ZaloPay server)
         if (reqMac !== mac) {
@@ -64,9 +64,15 @@ export const ConfirmPayment = async (req, res) => {
             // thanh toán thành công
             // merchant cập nhật trạng thái cho đơn hàng
             let dataJson = JSON.parse(dataStr, configZaloPay.key2);
-            console.log(req.body.data)
-            console.log("update order's status = success where app_trans_id =", dataJson["app_trans_id"]);
+            // console.log(req.body.data)
+            // console.log("update order's status = success where app_trans_id =", dataJson["app_trans_id"]);
+            const idCourse = JSON.parse(dataJson["item"])[0].id_course
 
+            await db.MyCourse.create({
+                id_student: dataJson["app_user"],
+                id_course: idCourse,
+                time_transaction: new Date()
+            })
             result.return_code = 1;
             result.return_message = "success";
         }

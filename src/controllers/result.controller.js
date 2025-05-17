@@ -14,7 +14,7 @@ export const getResulResponsetByIdLesson = async (req, res) => {
             ...q,
             options: [q.option_1, q.option_2, q.option_3, q.option_4]
         }));
-        
+
         const responseQuestions = newFormatQuestions.map(question => {
             const response = responses.find(r => r.id_question === question.id_question);
             return {
