@@ -74,7 +74,7 @@ export const submitAnswer = async (req, res) => {
             id_student: student.id_student,
             id_quiz: quiz.id_quiz,
         })
-        answers.map(async (ans) => {
+        await Promise.all(answers.map(async (ans) => {
             const question = await db.Question.findOne({ where: { id_question: ans.id_question } });
             if (question.type_question === "reading") {
                 const score = question.answer === ans.answer ? question.scale : 0
@@ -88,7 +88,8 @@ export const submitAnswer = async (req, res) => {
                     id_result: newResult.id_result,
                 })
             } else if (question.type_question === "listening") {
-                const score = question.answer === answers.answer ? question.scale : 0
+                const score = question.answer === ans.answer ? question.scale : 0
+                console.log(question.answer)
                 sumScore += score
                 await db.Response.create({
                     id_student: student.id_student,
@@ -101,7 +102,7 @@ export const submitAnswer = async (req, res) => {
             } else if (question.type_question === "speaking") {
                 const result = await scoreSpeakingAI(question.question, ans.filePath);
                 sumScore += result?.score
-                await db.Response.create({
+                const idSpeakingResponse = await db.Response.create({
                     id_student: student.id_student,
                     id_question: question.id_question,
                     link_mp3: ans.urlCloudinary,
@@ -110,10 +111,11 @@ export const submitAnswer = async (req, res) => {
                     comment: result?.comment + '\n' + result?.suggest,
                     id_result: newResult.id_result,
                 })
+                console.log('idSpeakingResponse ', idSpeakingResponse)
             } else if (question.type_question === "writing") {
                 const result = await ScoreWritingAI(question.question, ans.answer);
                 sumScore += result?.score
-                await db.Response.create({
+                const idSpeakingResponse = await db.Response.create({
                     id_student: student.id_student,
                     id_question: question.id_question,
                     response: ans.answer,
@@ -122,8 +124,9 @@ export const submitAnswer = async (req, res) => {
                     comment: result?.comment + '\n' + result?.suggest,
                     id_result: newResult.id_result,
                 })
+                console.log('idSpeakingResponse ', idSpeakingResponse)
             }
-        })
+        }))
         await db.Result.update(
             { score: sumScore }, // Dữ liệu cần cập nhật
             { where: { id_result: newResult.id_result } }               // Điều kiện cập nhật
@@ -133,7 +136,7 @@ export const submitAnswer = async (req, res) => {
             id_lesson: idLesson
         })
 
-        res.status(200).json({
+        return res.status(200).json({
             message: 'Answers submitted successfully',
             data: {
                 idQuiz: quiz.id_quiz,
@@ -142,7 +145,7 @@ export const submitAnswer = async (req, res) => {
         });
     } catch (error) {
         console.error("Error submitting quiz:", error.message);
-        res.status(500).json({ error: 'Internal Server Error' });
+        return res.status(500).json({ error: 'Internal Server Error' });
     }
 }
 

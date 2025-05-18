@@ -3,6 +3,7 @@ import { checkUser } from "../middleware/check_auth.js"
 import { createComment, getAllCommentByIdCourse } from "../controllers/comment.controller.js";
 
 const router = express.Router();
+// student
 router.post('/get-all-comment-by-id-course', getAllCommentByIdCourse);
 router.post('/create',checkUser, createComment);
 

@@ -11,7 +11,7 @@ const readingQuestions = [
         option_3: 'Confused',
         option_4: 'Friendly',
         answer: 'Determined',
-        scale: 2,
+        scale: 10,
         interpret: 'Tests understanding of vocabulary.',
         type_question: 'reading'
     },
@@ -25,7 +25,7 @@ const readingQuestions = [
         option_3: 'They is playing football.',
         option_4: 'I has a cat.',
         answer: 'He goes to school every day.',
-        scale: 2,
+        scale: 10,
         interpret: 'Tests knowledge of grammar.',
         type_question: 'reading'
     },
@@ -39,7 +39,7 @@ const readingQuestions = [
         option_3: 'Joyful',
         option_4: 'Tired',
         answer: 'Joyful',
-        scale: 2,
+        scale: 10,
         interpret: 'Tests vocabulary knowledge.',
         type_question: 'reading'
     },
@@ -53,7 +53,7 @@ const readingQuestions = [
         option_3: 'Rise',
         option_4: 'Expand',
         answer: 'Reduce',
-        scale: 2,
+        scale: 10,
         interpret: 'Tests understanding of antonyms.',
         type_question: 'reading'
     },
@@ -67,7 +67,7 @@ const readingQuestions = [
         option_3: 'Happiness',
         option_4: 'Quickly',
         answer: 'Happiness',
-        scale: 2,
+        scale: 10,
         interpret: 'Tests parts of speech.',
         type_question: 'reading'
     },
@@ -81,7 +81,7 @@ const readingQuestions = [
         option_3: 'To be angry',
         option_4: 'To travel',
         answer: 'To start a conversation',
-        scale: 2,
+        scale: 10,
         interpret: 'Tests knowledge of idioms.',
         type_question: 'reading'
     },
@@ -95,7 +95,7 @@ const readingQuestions = [
         option_3: 'After',
         option_4: 'Again',
         answer: 'Not',
-        scale: 2,
+        scale: 10,
         interpret: 'Tests understanding of word formation.',
         type_question: 'reading'
     },
@@ -109,7 +109,7 @@ const readingQuestions = [
         option_3: 'Letters',
         option_4: 'Every',
         answer: 'Writes',
-        scale: 2,
+        scale: 10,
         interpret: 'Tests verb identification.',
         type_question: 'reading'
     },
@@ -123,7 +123,7 @@ const readingQuestions = [
         option_3: 'I runned fast.',
         option_4: 'She writed a book.',
         answer: 'They watched a movie.',
-        scale: 2,
+        scale: 10,
         interpret: 'Tests past tense usage.',
         type_question: 'reading'
     },
@@ -137,7 +137,7 @@ const readingQuestions = [
         option_3: 'Heavy',
         option_4: 'Fast',
         answer: 'Delicate',
-        scale: 2,
+        scale: 10,
         interpret: 'Tests vocabulary understanding.',
         type_question: 'reading'
     },
@@ -151,7 +151,7 @@ const readingQuestions = [
         option_3: 'They play football.',
         option_4: 'We went home.',
         answer: 'Are you coming?',
-        scale: 2,
+        scale: 10,
         interpret: 'Tests sentence types.',
         type_question: 'reading'
     },
@@ -165,7 +165,7 @@ const readingQuestions = [
         option_3: 'Children',
         option_4: 'Child',
         answer: 'Children',
-        scale: 2,
+        scale: 10,
         interpret: 'Tests plural forms.',
         type_question: 'reading'
     },
@@ -179,7 +179,7 @@ const readingQuestions = [
         option_3: 'Run',
         option_4: 'Friend',
         answer: 'Blue',
-        scale: 2,
+        scale: 10,
         interpret: 'Tests parts of speech.',
         type_question: 'reading'
     },
@@ -193,7 +193,7 @@ const readingQuestions = [
         option_3: 'He runs fast.',
         option_4: 'I goes home.',
         answer: 'He runs fast.',
-        scale: 2,
+        scale: 10,
         interpret: 'Tests subject-verb agreement.',
         type_question: 'reading'
     },
@@ -207,7 +207,7 @@ const readingQuestions = [
         option_3: 'They are good in math.',
         option_4: 'I am good of math.',
         answer: 'She is good at math.',
-        scale: 2,
+        scale: 10,
         interpret: 'Tests preposition usage.',
         type_question: 'reading'
     },
@@ -221,7 +221,7 @@ const readingQuestions = [
         option_3: 'To buy something',
         option_4: 'To give something',
         answer: 'To take something temporarily',
-        scale: 2,
+        scale: 10,
         interpret: 'Tests vocabulary understanding.',
         type_question: 'reading'
     },
@@ -235,7 +235,7 @@ const readingQuestions = [
         option_3: 'She went to the party.',
         option_4: 'She going to the party.',
         answer: 'She will go to the party.',
-        scale: 2,
+        scale: 10,
         interpret: 'Tests future tense usage.',
         type_question: 'reading'
     },
@@ -249,7 +249,7 @@ const readingQuestions = [
         option_3: 'Happy',
         option_4: 'Blue',
         answer: 'Run',
-        scale: 2,
+        scale: 10,
         interpret: 'Tests parts of speech.',
         type_question: 'reading'
     },
@@ -263,7 +263,7 @@ const readingQuestions = [
         option_3: 'Angry',
         option_4: 'Quiet',
         answer: 'Kind and giving',
-        scale: 2,
+        scale: 10,
         interpret: 'Tests vocabulary understanding.',
         type_question: 'reading'
     },
@@ -277,7 +277,7 @@ const readingQuestions = [
         option_3: 'gone',
         option_4: 'going',
         answer: 'went',
-        scale: 2,
+        scale: 10,
         interpret: 'Tests past tense usage.',
         type_question: 'reading'
     },
@@ -291,7 +291,7 @@ const readingQuestions = [
         option_3: 'Greedy',
         option_4: 'Selfish',
         answer: 'Kind',
-        scale: 2,
+        scale: 10,
         interpret: 'Tests vocabulary knowledge.',
         type_question: 'reading'
     },
@@ -305,7 +305,7 @@ const readingQuestions = [
         option_3: 'They was happy.',
         option_4: 'We are learning English.',
         answer: 'We are learning English.',
-        scale: 2,
+        scale: 10,
         interpret: 'Tests grammar recognition in reading.',
         type_question: 'reading'
     },
@@ -319,7 +319,7 @@ const readingQuestions = [
         option_3: 'badly',
         option_4: 'quick',
         answer: 'good',
-        scale: 2,
+        scale: 10,
         interpret: 'Tests understanding of word usage.',
         type_question: 'reading'
     },
@@ -333,7 +333,7 @@ const readingQuestions = [
         option_3: 'Children',
         option_4: 'Childrens',
         answer: 'Children',
-        scale: 2,
+        scale: 10,
         interpret: 'Tests knowledge of irregular plurals.',
         type_question: 'reading'
     },
@@ -347,7 +347,7 @@ const readingQuestions = [
         option_3: 'Very',
         option_4: 'With',
         answer: 'Not',
-        scale: 2,
+        scale: 10,
         interpret: 'Tests understanding of prefixes.',
         type_question: 'reading'
     },
@@ -361,7 +361,7 @@ const readingQuestions = [
         option_3: 'The sun is bright.',
         option_4: 'He likes chocolate.',
         answer: 'She studied hard, so she passed the test.',
-        scale: 2,
+        scale: 10,
         interpret: 'Tests recognition of logical relationships.',
         type_question: 'reading'
     },
@@ -375,7 +375,7 @@ const readingQuestions = [
         option_3: 'Shout',
         option_4: 'Buzz',
         answer: 'Quiet',
-        scale: 2,
+        scale: 10,
         interpret: 'Tests vocabulary and opposites.',
         type_question: 'reading'
     },
@@ -389,7 +389,7 @@ const readingQuestions = [
         option_3: 'doing',
         option_4: 'done',
         answer: 'does',
-        scale: 2,
+        scale: 10,
         interpret: 'Tests subject-verb agreement.',
         type_question: 'reading'
     },
@@ -403,7 +403,7 @@ const readingQuestions = [
         option_3: 'Quickly',
         option_4: 'Table',
         answer: 'Table',
-        scale: 2,
+        scale: 10,
         interpret: 'Tests ability to identify parts of speech.',
         type_question: 'reading'
     },
@@ -417,7 +417,7 @@ const readingQuestions = [
         option_3: 'The boy read a book.',
         option_4: 'Although tired and hungry.',
         answer: 'The boy read a book.',
-        scale: 2,
+        scale: 10,
         interpret: 'Tests understanding of sentence structure.',
         type_question: 'reading'
     }
@@ -434,7 +434,7 @@ const listeningQuestions = [
         option_3: '11:00 AM',
         option_4: '12:00 PM',
         answer: '10:00 AM',
-        scale: 2,
+        scale: 10,
         interpret: 'Tests ability to understand spoken time information.',
         type_question: 'listening'
     },
@@ -448,7 +448,7 @@ const listeningQuestions = [
         option_3: 'Weather forecast',
         option_4: 'New technology',
         answer: 'Health advice',
-        scale: 2,
+        scale: 10,
         interpret: 'Tests comprehension of spoken topic.',
         type_question: 'listening'
     },
@@ -462,7 +462,7 @@ const listeningQuestions = [
         option_3: 'Attend a meeting',
         option_4: 'Prepare a report',
         answer: 'Send an email',
-        scale: 2,
+        scale: 10,
         interpret: 'Tests understanding of instructions.',
         type_question: 'listening'
     },
@@ -476,7 +476,7 @@ const listeningQuestions = [
         option_3: 'Auditorium',
         option_4: 'Outdoor Park',
         answer: 'Main Hall',
-        scale: 2,
+        scale: 10,
         interpret: 'Tests ability to catch location details.',
         type_question: 'listening'
     },
@@ -490,7 +490,7 @@ const listeningQuestions = [
         option_3: 'Indifferent',
         option_4: 'Confused',
         answer: 'Excited',
-        scale: 2,
+        scale: 10,
         interpret: 'Tests ability to infer speaker’s emotion.',
         type_question: 'listening'
     },
@@ -504,7 +504,7 @@ const listeningQuestions = [
         option_3: 'Budget cut',
         option_4: 'Staff shortage',
         answer: 'Technical issue',
-        scale: 2,
+        scale: 10,
         interpret: 'Tests recognition of specific details.',
         type_question: 'listening'
     },
@@ -518,7 +518,7 @@ const listeningQuestions = [
         option_3: 'Use new software',
         option_4: 'Cancel the meeting',
         answer: 'Use new software',
-        scale: 2,
+        scale: 10,
         interpret: 'Tests understanding of recommendations.',
         type_question: 'listening'
     },
@@ -532,7 +532,7 @@ const listeningQuestions = [
         option_3: 'End of the month',
         option_4: 'Next year',
         answer: 'End of the month',
-        scale: 2,
+        scale: 10,
         interpret: 'Tests ability to understand deadlines.',
         type_question: 'listening'
     },
@@ -546,7 +546,7 @@ const listeningQuestions = [
         option_3: 'A manager',
         option_4: 'A friend',
         answer: 'A colleague',
-        scale: 2,
+        scale: 10,
         interpret: 'Tests understanding of speaker-listener relationship.',
         type_question: 'listening'
     },
@@ -560,7 +560,7 @@ const listeningQuestions = [
         option_3: 'The venue address',
         option_4: 'The delivery date',
         answer: 'The meeting time',
-        scale: 2,
+        scale: 10,
         interpret: 'Tests attention to detail.',
         type_question: 'listening'
     },
@@ -574,7 +574,7 @@ const listeningQuestions = [
         option_3: 'A pizza',
         option_4: 'A sandwich',
         answer: 'A pizza',
-        scale: 2,
+        scale: 10,
         interpret: 'Tests listening for specific information in everyday situations.',
         type_question: 'listening'
     },
@@ -588,7 +588,7 @@ const listeningQuestions = [
         option_3: 'To the supermarket',
         option_4: 'To school',
         answer: 'To the airport',
-        scale: 2,
+        scale: 10,
         interpret: 'Tests ability to identify locations from listening.',
         type_question: 'listening'
     },
@@ -602,7 +602,7 @@ const listeningQuestions = [
         option_3: '11:15 AM',
         option_4: '2:00 PM',
         answer: '10:00 AM',
-        scale: 2,
+        scale: 10,
         interpret: 'Tests listening for time expressions.',
         type_question: 'listening'
     },
@@ -616,7 +616,7 @@ const listeningQuestions = [
         option_3: 'Cooking',
         option_4: 'Painting',
         answer: 'Cooking',
-        scale: 2,
+        scale: 10,
         interpret: 'Tests comprehension of personal information.',
         type_question: 'listening'
     },
@@ -630,7 +630,7 @@ const listeningQuestions = [
         option_3: 'He is stressed',
         option_4: 'He wants to quit',
         answer: 'He enjoys it',
-        scale: 2,
+        scale: 10,
         interpret: 'Tests ability to identify opinions or feelings.',
         type_question: 'listening'
     },
@@ -644,7 +644,7 @@ const listeningQuestions = [
         option_3: 'Cloudy',
         option_4: 'Snowy',
         answer: 'Rainy',
-        scale: 2,
+        scale: 10,
         interpret: 'Tests listening for weather descriptions.',
         type_question: 'listening'
     },
@@ -658,7 +658,7 @@ const listeningQuestions = [
         option_3: 'Her wallet',
         option_4: 'Her bag',
         answer: 'Her keys',
-        scale: 2,
+        scale: 10,
         interpret: 'Tests listening for actions and details.',
         type_question: 'listening'
     },
@@ -672,7 +672,7 @@ const listeningQuestions = [
         option_3: 'Her friend',
         option_4: 'Her boss',
         answer: 'Her friend',
-        scale: 2,
+        scale: 10,
         interpret: 'Tests ability to identify relationships.',
         type_question: 'listening'
     },
@@ -686,7 +686,7 @@ const listeningQuestions = [
         option_3: 'Traveling to the beach',
         option_4: 'Studying for exams',
         answer: 'Going to a concert',
-        scale: 2,
+        scale: 10,
         interpret: 'Tests comprehension of future plans.',
         type_question: 'listening'
     },
@@ -700,7 +700,7 @@ const listeningQuestions = [
         option_3: 'Taxi',
         option_4: 'Bicycle',
         answer: 'Train',
-        scale: 2,
+        scale: 10,
         interpret: 'Tests vocabulary and listening in travel contexts.',
         type_question: 'listening'
     }
@@ -712,7 +712,7 @@ const speakingQuestions = [
         id_quiz: 3,
         link_mp3: null,
         link_image: null,
-        scale: 2,
+        scale: 10,
         type_question: 'speaking'
     },
     {
@@ -720,7 +720,7 @@ const speakingQuestions = [
         id_quiz: 3,
         link_mp3: null,
         link_image: null,
-        scale: 2,
+        scale: 10,
         type_question: 'speaking'
     },
     {
@@ -728,7 +728,7 @@ const speakingQuestions = [
         id_quiz: 3,
         link_mp3: null,
         link_image: null,
-        scale: 2,
+        scale: 10,
         type_question: 'speaking'
     },
     {
@@ -736,7 +736,7 @@ const speakingQuestions = [
         id_quiz: 3,
         link_mp3: null,
         link_image: null,
-        scale: 2,
+        scale: 10,
         type_question: 'speaking'
     },
     {
@@ -744,7 +744,7 @@ const speakingQuestions = [
         id_quiz: 3,
         link_mp3: null,
         link_image: null,
-        scale: 2,
+        scale: 10,
         type_question: 'speaking'
     },
     {
@@ -752,7 +752,7 @@ const speakingQuestions = [
         id_quiz: 3,
         link_mp3: null,
         link_image: null,
-        scale: 2,
+        scale: 10,
         type_question: 'speaking'
     },
     {
@@ -760,7 +760,7 @@ const speakingQuestions = [
         id_quiz: 3,
         link_mp3: null,
         link_image: null,
-        scale: 2,
+        scale: 10,
         type_question: 'speaking'
     },
     {
@@ -768,7 +768,7 @@ const speakingQuestions = [
         id_quiz: 3,
         link_mp3: null,
         link_image: null,
-        scale: 2,
+        scale: 10,
         type_question: 'speaking'
     },
     {
@@ -776,7 +776,7 @@ const speakingQuestions = [
         id_quiz: 3,
         link_mp3: null,
         link_image: null,
-        scale: 2,
+        scale: 10,
         type_question: 'speaking'
     },
     {
@@ -784,7 +784,7 @@ const speakingQuestions = [
         id_quiz: 3,
         link_mp3: null,
         link_image: null,
-        scale: 2,
+        scale: 10,
         type_question: 'speaking'
     }
 ];
@@ -795,7 +795,7 @@ const writingQuestions = [
         id_quiz: 4,
         link_mp3: null,
         link_image: null,
-        scale: 2,
+        scale: 10,
         type_question: 'writing'
     },
     {
@@ -803,7 +803,7 @@ const writingQuestions = [
         id_quiz: 4,
         link_mp3: null,
         link_image: null,
-        scale: 2,
+        scale: 10,
         type_question: 'writing'
     },
     {
@@ -811,7 +811,7 @@ const writingQuestions = [
         id_quiz: 4,
         link_mp3: null,
         link_image: null,
-        scale: 2,
+        scale: 10,
         type_question: 'writing'
     },
     {
@@ -819,7 +819,7 @@ const writingQuestions = [
         id_quiz: 4,
         link_mp3: null,
         link_image: null,
-        scale: 2,
+        scale: 10,
         type_question: 'writing'
     },
     {
@@ -827,7 +827,7 @@ const writingQuestions = [
         id_quiz: 4,
         link_mp3: null,
         link_image: null,
-        scale: 2,
+        scale: 10,
         type_question: 'writing'
     },
     {
@@ -835,7 +835,7 @@ const writingQuestions = [
         id_quiz: 4,
         link_mp3: null,
         link_image: null,
-        scale: 2,
+        scale: 10,
         type_question: 'writing'
     },
     {
@@ -843,7 +843,7 @@ const writingQuestions = [
         id_quiz: 4,
         link_mp3: null,
         link_image: null,
-        scale: 2,
+        scale: 10,
         type_question: 'writing'
     },
     {
@@ -851,7 +851,7 @@ const writingQuestions = [
         id_quiz: 4,
         link_mp3: null,
         link_image: null,
-        scale: 2,
+        scale: 10,
         type_question: 'writing'
     },
     {
@@ -859,7 +859,7 @@ const writingQuestions = [
         id_quiz: 4,
         link_mp3: null,
         link_image: null,
-        scale: 2,
+        scale: 10,
         type_question: 'writing'
     },
     {
@@ -867,7 +867,7 @@ const writingQuestions = [
         id_quiz: 4,
         link_mp3: null,
         link_image: null,
-        scale: 2,
+        scale: 10,
         type_question: 'writing'
     }
 ];

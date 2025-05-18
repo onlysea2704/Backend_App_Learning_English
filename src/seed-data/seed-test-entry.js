@@ -92,7 +92,7 @@ const testQuestions = [
         option_3: 'Confused',
         option_4: 'Friendly',
         answer: 'Determined',
-        scale: 2,
+        scale: 10,
         interpret: 'Tests understanding of vocabulary.',
         type_question: 'reading'
     },
@@ -106,7 +106,7 @@ const testQuestions = [
         option_3: 'They is playing football.',
         option_4: 'I has a cat.',
         answer: 'He goes to school every day.',
-        scale: 2,
+        scale: 10,
         interpret: 'Tests knowledge of grammar.',
         type_question: 'reading'
     },
@@ -120,7 +120,7 @@ const testQuestions = [
         option_3: 'Joyful',
         option_4: 'Tired',
         answer: 'Joyful',
-        scale: 2,
+        scale: 10,
         interpret: 'Tests vocabulary knowledge.',
         type_question: 'reading'
     },
@@ -134,7 +134,7 @@ const testQuestions = [
         option_3: 'Rise',
         option_4: 'Expand',
         answer: 'Reduce',
-        scale: 2,
+        scale: 10,
         interpret: 'Tests understanding of antonyms.',
         type_question: 'reading'
     },
@@ -148,7 +148,7 @@ const testQuestions = [
         option_3: 'Happiness',
         option_4: 'Quickly',
         answer: 'Happiness',
-        scale: 2,
+        scale: 10,
         interpret: 'Tests parts of speech.',
         type_question: 'reading'
     },
@@ -162,7 +162,7 @@ const testQuestions = [
         option_3: '11:00 AM',
         option_4: '12:00 PM',
         answer: '10:00 AM',
-        scale: 2,
+        scale: 10,
         interpret: 'Tests ability to understand spoken time information.',
         type_question: 'listening'
     },
@@ -176,7 +176,7 @@ const testQuestions = [
         option_3: 'Weather forecast',
         option_4: 'New technology',
         answer: 'Health advice',
-        scale: 2,
+        scale: 10,
         interpret: 'Tests comprehension of spoken topic.',
         type_question: 'listening'
     },
@@ -190,7 +190,7 @@ const testQuestions = [
         option_3: 'Attend a meeting',
         option_4: 'Prepare a report',
         answer: 'Send an email',
-        scale: 2,
+        scale: 10,
         interpret: 'Tests understanding of instructions.',
         type_question: 'listening'
     },
@@ -204,7 +204,7 @@ const testQuestions = [
         option_3: 'Auditorium',
         option_4: 'Outdoor Park',
         answer: 'Main Hall',
-        scale: 2,
+        scale: 10,
         interpret: 'Tests ability to catch location details.',
         type_question: 'listening'
     },
@@ -218,7 +218,7 @@ const testQuestions = [
         option_3: 'Indifferent',
         option_4: 'Confused',
         answer: 'Excited',
-        scale: 2,
+        scale: 10,
         interpret: 'Tests ability to infer speaker’s emotion.',
         type_question: 'listening'
     },
@@ -227,7 +227,7 @@ const testQuestions = [
         id_quiz: 203,
         link_mp3: null,
         link_image: null,
-        scale: 2,
+        scale: 10,
         type_question: 'writing'
     },
     {
@@ -235,7 +235,7 @@ const testQuestions = [
         id_quiz: 203,
         link_mp3: null,
         link_image: null,
-        scale: 2,
+        scale: 10,
         type_question: 'writing'
     },
     {
@@ -243,7 +243,7 @@ const testQuestions = [
         id_quiz: 204,
         link_mp3: null,
         link_image: null,
-        scale: 2,
+        scale: 10,
         type_question: 'speaking'
     },
     {
@@ -251,7 +251,7 @@ const testQuestions = [
         id_quiz: 204,
         link_mp3: null,
         link_image: null,
-        scale: 2,
+        scale: 10,
         type_question: 'speaking'
     },
 ]

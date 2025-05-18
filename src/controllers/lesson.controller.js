@@ -1,4 +1,5 @@
 import db from "../models/index.js";
+import { checkMyCourse } from "../utils.ts/checkMyCourse.js";
 
 export const getListLessonByIdCourse = async (req, res) => {
     // input {idCourse}
@@ -29,12 +30,19 @@ export const getListLessonByIdCourse = async (req, res) => {
 
 export const getInfoLesson = async (req, res) => {
     // input {idLesson}
-    const idLesson = req.body.idLesson;
     try {
-        const lesson = await db.Lesson.findOne({ where: { id_lesson: idLesson } })
+        const idLesson = req.body.idLesson;
+        const idUser = req.user.id_user;
+        const student = await db.Student.findOne({ where: {id_user: idUser}});
+        const lesson = await db.Lesson.findOne({ where: { id_lesson: idLesson }, raw: true });
         if (!lesson) {
             return res.status(404).json({ message: "Lesson not found" });
         }
+        const isMyCourse = checkMyCourse(student.id_student, lesson.id_course)
+        if (!isMyCourse) {
+            return res.json({ status: false, message: 'Hãy mua khóa học để comment nhé' })
+        }
+        lesson.status = true
         return res.json(lesson);
     } catch (error) {
         console.log('error: ', error.message);
@@ -47,7 +55,7 @@ export const checkCompleteLesson = async (req, res) => {
         const idLesson = req.body.idLesson;
         const idUser = req.user.id_user;
         const student = await db.Student.findOne({ where: { id_user: idUser } });
-    
+
         const isComplete = await db.Progress.findOne({ where: { id_student: student.id_student, id_lesson: idLesson } });
         if (isComplete) {
             return res.json({ status: true });

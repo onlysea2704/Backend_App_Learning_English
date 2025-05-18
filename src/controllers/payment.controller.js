@@ -14,7 +14,6 @@ export const CreateBill = async (req, res) => {
 
     const embed_data = { redirecturl: `https://student-hustenglish-system.vercel.app/coursedetail/${idCourse}` };
     const items = [infoCourse];
-    let x = infoCourse.price + 10000
     const transID = Math.floor(Math.random() * 1000000);
     const order = {
         app_id: configZaloPay.appid,
@@ -23,7 +22,7 @@ export const CreateBill = async (req, res) => {
         app_time: Date.now(), 
         item: JSON.stringify(items),
         embed_data: JSON.stringify(embed_data),
-        amount: Number(10000) + Number(infoCourse.price) * 100, // + tạm 10000 cho đỡ lỗi vì giá đang rất nhỏ
+        amount: Number(infoCourse.price),
         // Lưu ý giá tiền phải chẵn mới thanh toán được
         description: `Thanh Toán Khóa Học ${infoCourse.name_course} #${transID}`,
         bank_code: "",

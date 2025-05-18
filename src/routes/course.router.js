@@ -6,14 +6,18 @@ import multer from "multer"
 const upload = multer({ dest: 'uploads/' })
 
 const router = express.Router()
+// visiter
+router.post('/detail-course', getDetailCourseById)
+
+// student
 router.get('/all-course', checkUser, getAllCourse)
 router.get('/my-course', checkUser, getMyCourses)
+
+// user
 router.get('/get-all-list-courses-admin', checkAdminRole, getAllListCourseAdmin)
-router.post('/detail-course', getDetailCourseById)
 router.post('/create-course', upload.single('image'), creatCourse)
 router.get('/update-course', updateCourse)
 router.get('/delete-course', deleteCourse)
 router.get('/get-popular-courses', getPopularCourse)
-
 
 export default router;
