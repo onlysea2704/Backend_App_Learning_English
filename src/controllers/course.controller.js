@@ -27,7 +27,7 @@ export const getPopularCourse = async (req, res) => {
 export const getMyCourses = async (req, res) => {
     const idUser = req.user.id_user;
     const myCourses = await db.MyCourse.findAll({
-        where: { id_student: req.user.id_user },
+        where: { id_student: idUser },
     });
     const listMyCourses = myCourses.map(myCourse => myCourse.id_course)
     const courses = await db.Course.findAll({

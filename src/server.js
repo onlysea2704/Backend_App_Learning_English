@@ -9,7 +9,6 @@ import lessonRoutes from "./routes/lesson.router.js"
 import questionRoutes from "./routes/question.router.js"
 import commentRoutes from "./routes/comment.router.js"
 import resultRoutes from "./routes/result.router.js"
-import responseRoutes from "./routes/response.router.js"
 import paymentRoutes from "./routes/payment.router.js"
 import { urlNgrok } from './config/ngrok.js';
 
@@ -27,7 +26,6 @@ app.use('/lesson',lessonRoutes)
 app.use('/question',questionRoutes)
 app.use('/comment',commentRoutes)
 app.use('/result',resultRoutes)
-app.use('/response',responseRoutes)
 app.use('/payment',paymentRoutes)
 
 const port = process.env.SERVER_PORT

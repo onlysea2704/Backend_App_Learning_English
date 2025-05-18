@@ -1,4 +1,5 @@
 import db from "../models/index.js";
+import { checkMyCourse } from "../utils.ts/checkMyCourse.js";
 
 export const getAllCommentByIdCourse = async (req, res) => {
 
@@ -23,6 +24,12 @@ export const createComment = async (req, res) => {
     const idCourse = req.body.idCourse;
     const content = req.body.content;
     const idStudent = await db.Student.findOne({ where: { id_user: idUser } });
+
+    const isMyCourse = await checkMyCourse(idStudent, idCourse)
+    if(!isMyCourse){
+        return res.json({status : false, message: 'Hãy mua khóa học để comment nhé'})
+    }
+
     await db.Comment.create({
         id_student: idStudent.id_student,
         id_course: idCourse,

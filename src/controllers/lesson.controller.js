@@ -1,6 +1,6 @@
 import db from "../models/index.js";
 
-export const getAllLessonByIdCourse = async (req, res) => {
+export const getListLessonByIdCourse = async (req, res) => {
     // input {idCourse}
     const idCourse = req.body.idCourse;
     try {

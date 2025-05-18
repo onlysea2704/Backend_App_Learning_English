@@ -6,5 +6,4 @@ const router = express.Router();
 router.post('/get-all-comment-by-id-course', getAllCommentByIdCourse);
 router.post('/create',checkUser, createComment);
 
-
 export default router;

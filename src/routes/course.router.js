@@ -9,10 +9,11 @@ const router = express.Router()
 router.get('/all-course', checkUser, getAllCourse)
 router.get('/my-course', checkUser, getMyCourses)
 router.get('/get-all-list-courses-admin', checkAdminRole, getAllListCourseAdmin)
-router.post('/detail-course', checkUser, getDetailCourseById)
+router.post('/detail-course', getDetailCourseById)
 router.post('/create-course', upload.single('image'), creatCourse)
 router.get('/update-course', updateCourse)
 router.get('/delete-course', deleteCourse)
 router.get('/get-popular-courses', getPopularCourse)
+
 
 export default router;
