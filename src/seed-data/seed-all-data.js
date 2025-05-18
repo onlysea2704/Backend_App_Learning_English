@@ -62,7 +62,7 @@ const seedData = async () => {
     // await seedResponses();
     // await seedProgress();
     await seedComments();
-    await seedMyCourses();
+    // await seedMyCourses();
     await seedLectureres();
     await seedStudents();
     await seedCourseTest();

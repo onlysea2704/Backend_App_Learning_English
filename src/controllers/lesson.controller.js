@@ -38,7 +38,7 @@ export const getInfoLesson = async (req, res) => {
         if (!lesson) {
             return res.status(404).json({ message: "Lesson not found" });
         }
-        const isMyCourse = checkMyCourse(student.id_student, lesson.id_course)
+        const isMyCourse = await checkMyCourse(student.id_student, lesson.id_course)
         if (!isMyCourse) {
             return res.json({ status: false, message: 'Hãy mua khóa học để comment nhé' })
         }

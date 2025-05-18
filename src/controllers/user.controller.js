@@ -32,6 +32,12 @@ export const register = async (req, res) => {
       id_user: userCreated.id, // ✅ dùng id vừa tạo
     });
 
+    // 3.
+    await db.MyCourse.create({
+      id_student: studentCreated.id,
+      id_course: 21
+    })
+
     return res.json({ status: true, student: studentCreated });
   } catch (error) {
     return res.status(500).json({ status: false, error: error.message });

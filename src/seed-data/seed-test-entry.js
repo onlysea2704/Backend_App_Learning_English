@@ -1,5 +1,6 @@
 // node .\src\seed-data\seed-course.js
 import db from '../models/index.js';
+import Student from '../models/student.js';
 
 const testCourse = {
     id_course: 21,
@@ -263,6 +264,9 @@ export const seedCourseTest = async () => {
         await db.Quiz.bulkCreate(testQuiz);
         await db.Lecture.create(testLecture);
         await db.Question.bulkCreate(testQuestions);
+
+        const students = await db.Student.findAll();
+        await db.MyCourse.bulkCreate(students.map((student) => ({id_student: student.id_student, id_course: 21})));
         console.log('✅ Seed dữ liệu kiểm tra đầu vào thành công');
     } catch (error) {
         console.error('❌ Lỗi khi seed dữ liệu kiểm tra đầu vào thành công:', error.message);

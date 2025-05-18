@@ -1,17 +1,19 @@
 import express from "express"
 import { checkAdminRole, checkUser } from "../middleware/check_auth.js"
-import { creatCourse, deleteCourse, getAllCourse, getAllListCourseAdmin, getDetailCourseById, getMyCourses, getPopularCourse, updateCourse } from "../controllers/course.controller.js"
+import { checkProgress, creatCourse, deleteCourse, getAllCourse, getAllListCourseAdmin, getDetailCourseById, getMyCourses, getPopularCourse, updateCourse } from "../controllers/course.controller.js"
 import multer from "multer"
 
 const upload = multer({ dest: 'uploads/' })
 
 const router = express.Router()
 // visiter
-router.post('/detail-course', getDetailCourseById)
+// router.post('/detail-course', getDetailCourseById)
 
 // student
 router.get('/all-course', checkUser, getAllCourse)
 router.get('/my-course', checkUser, getMyCourses)
+router.post('/detail-course', checkUser, getDetailCourseById)
+router.post('/check-progress', checkUser, checkProgress)
 
 // user
 router.get('/get-all-list-courses-admin', checkAdminRole, getAllListCourseAdmin)

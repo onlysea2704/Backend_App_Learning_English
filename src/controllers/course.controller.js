@@ -41,20 +41,67 @@ export const getMyCourses = async (req, res) => {
     return res.json(courses)
 }
 
+export const getDetailCourseById = async (req, res) => {
+    // input {idCourse}
+    const idUser = req.user.id_user;
+    const idCourse = req.body.idCourse;
+    const student = await db.Student.findOne({ where: { id_user: idUser } })
+    const detailCourse = await db.Course.findOne({ where: { id_course: idCourse } })
+    const myCourse = await db.MyCourse.findOne({ where: { id_course: idCourse, id_student: student.id_student } })
+    const isMyCourse = !!myCourse
+
+    return res.json({ detailCourse: detailCourse, isMyCourse: isMyCourse })
+}
+
+export const checkProgress = async (req, res) => {
+    const idCourse = req.body.idCourse;
+    const idUser = req.user.id_user;
+    const student = await db.Student.findOne({ where: { id_user: idUser } });
+    try {
+        const listLessonWithName = await db.sequelize.query(`
+            SELECT 
+                l.id_lesson,
+                l.id_course,
+                l.order_lesson,
+                l.type_lesson,
+                COALESCE(le.name_lecture, q.name_quiz) AS lesson_name
+            FROM Lessons l
+            LEFT JOIN lectures le ON l.id_lesson = le.id_lesson
+            LEFT JOIN quizzes q ON l.id_lesson = q.id_lesson
+            WHERE l.id_course = :id_course
+            ORDER BY l.order_lesson ASC;
+        `, {
+            replacements: { id_course: idCourse },
+            type: db.Sequelize.QueryTypes.SELECT
+        });
+        const lessonsOfCourse = await db.Lesson.findAll({ where: { id_course: idCourse } });
+        const lessonIds = lessonsOfCourse.map(lesson => lesson.id_lesson);
+        const completeLessons = await db.Progress.findAll({
+            where: {
+                id_student: student.id_student,
+                id_lesson: {
+                    [Op.in]: lessonIds
+                }
+            }, raw: true
+        });
+        const completeLessonIds = completeLessons.map((completeLesson) => (completeLesson.id_lesson))
+        const listLessonsResult = listLessonWithName.map(item => ({
+            ...item,
+            isComplete: completeLessonIds.includes(item.id_lesson)
+        }));
+
+        // console.log(updatedResults);
+        return res.json(listLessonsResult);
+    } catch (error) {
+        console.log('error: ', error.message);
+        return res.status(500).json({ error: error.message });
+    }
+}
+
 export const getAllListCourseAdmin = async (req, res) => {
     const courses = await db.Course.findAll();
 
     return res.json(courses)
-}
-
-export const getDetailCourseById = async (req, res) => {
-    // input {idCourse}
-
-    const detailCourse = await db.Course.findOne({ where: { id_course: Number(req.body.idCourse) } })
-    const myCourse = await db.MyCourse.findOne({ where: { id_course: Number(req.body.idCourse) } })
-    const isMyCourse = !!myCourse
-
-    return res.json({ detailCourse: detailCourse, isMyCourse: isMyCourse })
 }
 
 export const getAllLecturer = async (req, res) => {
