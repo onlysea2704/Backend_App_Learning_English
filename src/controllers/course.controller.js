@@ -18,6 +18,11 @@ export const getAllCourse = async (req, res) => {
 
 export const getPopularCourse = async (req, res) => {
     const popularCourses = await db.Course.findAll({
+        where: {
+            id_course: {
+                [Op.ne]: 21
+            }
+        },
         order: [['number_student', 'DESC']],
         limit: 4
     });

@@ -10,7 +10,7 @@ export const CreateBill = async (req, res) => {
     const idCourse = req.body.idCourse
     const infoCourse = await db.Course.findOne({ where: { id_course: idCourse } })
     const idUser = req.user.id_user
-    const student = await db.Student.findOne({where: {id_user: idUser}})
+    const student = await db.Student.findOne({ where: { id_user: idUser } })
 
     const embed_data = { redirecturl: `https://student-hustenglish-system.vercel.app/coursedetail/${idCourse}` };
     const items = [infoCourse];
@@ -19,7 +19,7 @@ export const CreateBill = async (req, res) => {
         app_id: configZaloPay.appid,
         app_trans_id: `${moment().format('YYMMDD')}_${transID}`, // translation missing: vi.docs.shared.sample_code.comments.app_trans_id
         app_user: student.id_student, // thay cái này bằng userId
-        app_time: Date.now(), 
+        app_time: Date.now(),
         item: JSON.stringify(items),
         embed_data: JSON.stringify(embed_data),
         amount: Number(infoCourse.price),
@@ -66,6 +66,12 @@ export const ConfirmPayment = async (req, res) => {
                 id_student: dataJson["app_user"],
                 id_course: idCourse,
                 time_transaction: new Date()
+            })
+
+            await db.Course.update({
+                number_student: db.Sequelize.literal('number_student + 1'),
+            }, {
+                where: { id_course: idCourse }
             })
             result.return_code = 1;
             result.return_message = "success";

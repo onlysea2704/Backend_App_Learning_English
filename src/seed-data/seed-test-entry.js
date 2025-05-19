@@ -1,6 +1,5 @@
 // node .\src\seed-data\seed-course.js
 import db from '../models/index.js';
-import Student from '../models/student.js';
 
 const testCourse = {
     id_course: 21,
@@ -8,7 +7,7 @@ const testCourse = {
     description: "This course helps evaluate your current English level in Listening, Speaking, Reading, and Writing.",
     price: 0,
     link_image: "https://res.cloudinary.com/dggpj05f2/image/upload/v1746986294/thumbnail8_hqi58x.jpg",
-    number_lesson: 0,
+    number_lesson: 5,
     number_student: 0,
     id_lecturer: 5,
     type_course: 'All Level'
@@ -266,7 +265,12 @@ export const seedCourseTest = async () => {
         await db.Question.bulkCreate(testQuestions);
 
         const students = await db.Student.findAll();
-        await db.MyCourse.bulkCreate(students.map((student) => ({id_student: student.id_student, id_course: 21})));
+        await db.MyCourse.bulkCreate(students.map((student) => ({ id_student: student.id_student, id_course: 21 })));
+        await db.Course.update({
+            number_student: db.Sequelize.literal(`number_student + ${students.length}`),
+        }, {
+            where: { id_course: 21 }
+        })
         console.log('✅ Seed dữ liệu kiểm tra đầu vào thành công');
     } catch (error) {
         console.error('❌ Lỗi khi seed dữ liệu kiểm tra đầu vào thành công:', error.message);

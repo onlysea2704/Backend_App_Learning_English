@@ -33,7 +33,7 @@ export const getInfoLesson = async (req, res) => {
     try {
         const idLesson = req.body.idLesson;
         const idUser = req.user.id_user;
-        const student = await db.Student.findOne({ where: {id_user: idUser}});
+        const student = await db.Student.findOne({ where: { id_user: idUser } });
         const lesson = await db.Lesson.findOne({ where: { id_lesson: idLesson }, raw: true });
         if (!lesson) {
             return res.status(404).json({ message: "Lesson not found" });
@@ -67,6 +67,34 @@ export const checkCompleteLesson = async (req, res) => {
     }
 }
 
+export const markAsDone = async (req, res) => {
+
+    try {
+        const idUser = req.user.id_user;
+        const idLesson = req.body.idLesson;
+        const student = await db.Student.findOne({ where: { id_user: idUser } });
+        await db.Progress.create({
+            id_student: student.id_student,
+            id_lesson: idLesson
+        })
+        return res.json({ success: true })
+    } catch (error) {
+        console.log(error.message)
+        return res.json({ success: true })
+    }
+}
+
+export const getInfoLecturer = async (req, res) => {
+    try {
+        const idLecturer = req.body.idLecturer;
+        const infoLecturer = await db.Lecturer.findOne({ where: { id_lecturer: idLecturer } });
+        return res.json(infoLecturer);
+    } catch (error) {
+        console.log(error.message);
+        return res.status(500).json({succes: false})
+    }
+
+}
 // export const getLectureById = async (req, res) => {
 
 //     // input {idLecture}

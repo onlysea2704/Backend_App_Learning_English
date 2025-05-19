@@ -202,26 +202,6 @@ const courses = [
     id_lecturer: 4,
     type_course: 'Writing'
   },
-  // {
-  //   name_course: "English for Medical Professionals",
-  //   description: "Designed for doctors, nurses, and healthcare workers. Learn medical vocabulary, patient communication, and healthcare scenarios in English.",
-  //   price: 2900000,
-  //   link_image: "https://res.cloudinary.com/dggpj05f2/image/upload/v1746986294/thumbnail8_hqi58x.jpg",
-  //   number_lesson: 20,
-  //   number_student: 0,
-  //   id_lecturer: 2,
-  //   type_course: 'Speaking + Reading'
-  // },
-  // {
-  //   name_course: "English through Movies",
-  //   description: "Learn English naturally by watching popular movies and analyzing scenes. Improve your listening, pronunciation, and slang vocabulary while having fun.",
-  //   price: 1600000,
-  //   link_image: "https://res.cloudinary.com/dggpj05f2/image/upload/v1746986294/thumbnail1_vklyyf.jpg",
-  //   number_lesson: 20,
-  //   number_student: 0,
-  //   id_lecturer: 1,
-  //   type_course: 'Listening + Speaking'
-  // }
 ];
 
 export const seedCourses = async () => {

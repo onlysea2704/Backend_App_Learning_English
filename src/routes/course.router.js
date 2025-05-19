@@ -8,6 +8,7 @@ const upload = multer({ dest: 'uploads/' })
 const router = express.Router()
 // visiter
 // router.post('/detail-course', getDetailCourseById)
+router.get('/get-popular-courses', getPopularCourse)
 
 // student
 router.get('/all-course', checkUser, getAllCourse)
@@ -20,6 +21,5 @@ router.get('/get-all-list-courses-admin', checkAdminRole, getAllListCourseAdmin)
 router.post('/create-course', upload.single('image'), creatCourse)
 router.get('/update-course', updateCourse)
 router.get('/delete-course', deleteCourse)
-router.get('/get-popular-courses', getPopularCourse)
 
 export default router;
