@@ -29,9 +29,8 @@ export const checkAdminRole = async (req, res, next) => {
 };
 
 export const checkUser = async (req, res, next) => {
-
-  const token = req.headers.authorization.split(" ")[1]
   try {
+    const token = req.headers.authorization.split(" ")[1]
     // Xác thực ID Token bằng Firebase Admin SDK
     const decodedToken = await admin.auth().verifyIdToken(token);
     const uid = decodedToken.uid;
@@ -41,6 +40,6 @@ export const checkUser = async (req, res, next) => {
     req.user = user;
     next();
   } catch (error) {
-    res.status(401).send("Unauthorized");
+    res.status(200).send({ status: "Unauthorized" });
   }
 };

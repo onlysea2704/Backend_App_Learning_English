@@ -93,8 +93,8 @@ export const getInfoLecturer = async (req, res) => {
         console.log(error.message);
         return res.status(500).json({succes: false})
     }
-
 }
+
 // export const getLectureById = async (req, res) => {
 
 //     // input {idLecture}

@@ -16,6 +16,23 @@ export const getAllCourse = async (req, res) => {
     return res.json(courses)
 }
 
+export const publicApiGetAllCourse = async (req, res) => {
+    try {
+        const listCourses = await db.Course.findAll();
+        return res.json(listCourses)
+    } catch (error) {
+        return res.json([])
+    }
+}
+
+export const publicApiGetDetailCourseById = async (req, res) => {
+    // input {idCourse}
+    const idCourse = req.body.idCourse;
+    const detailCourse = await db.Course.findOne({ where: { id_course: idCourse } })
+
+    return res.json({ detailCourse: detailCourse })
+}
+
 export const getPopularCourse = async (req, res) => {
     const popularCourses = await db.Course.findAll({
         where: {
