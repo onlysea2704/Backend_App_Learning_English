@@ -1,5 +1,7 @@
 import db from "../models/index.js";
 import { checkMyCourse } from "../utils.ts/checkMyCourse.js";
+
+
 export const getLectureByIdLesson = async (req, res) => {
 
     try {

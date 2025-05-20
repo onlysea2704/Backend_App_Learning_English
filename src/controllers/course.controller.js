@@ -71,7 +71,6 @@ export const getDetailCourseById = async (req, res) => {
     const detailCourse = await db.Course.findOne({ where: { id_course: idCourse } })
     const myCourse = await db.MyCourse.findOne({ where: { id_course: idCourse, id_student: student.id_student } })
     const isMyCourse = !!myCourse
-
     return res.json({ detailCourse: detailCourse, isMyCourse: isMyCourse })
 }
 

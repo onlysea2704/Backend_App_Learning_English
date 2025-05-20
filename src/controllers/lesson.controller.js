@@ -11,7 +11,8 @@ export const getListLessonByIdCourse = async (req, res) => {
             l.id_course,
             l.order_lesson,
             l.type_lesson,
-            COALESCE(le.name_lecture, q.name_quiz) AS lesson_name
+            COALESCE(le.name_lecture, q.name_quiz) AS lesson_name,
+            COALESCE(le.id_lecture, q.id_quiz) AS id_lecture_quiz
         FROM Lessons l
         LEFT JOIN lectures le ON l.id_lesson = le.id_lesson
         LEFT JOIN quizzes q ON l.id_lesson = q.id_lesson
@@ -48,6 +49,13 @@ export const getInfoLesson = async (req, res) => {
         console.log('error: ', error.message);
         return res.status(500).json({ error: error.message });
     }
+}
+
+export const getDetailCourseByIdLesson = async (req, res) => {
+    const idLesson = req.body.idLesson;
+    const lesson = await db.Lesson.findOne({where: {id_lesson: idLesson}});
+    const detailCourse = await db.Course.findOne({where: {id_course: lesson.id_course}});
+    return res.json({detailCourse, orderLesson: lesson.order_lesson});
 }
 
 export const checkCompleteLesson = async (req, res) => {
@@ -94,22 +102,6 @@ export const getInfoLecturer = async (req, res) => {
         return res.status(500).json({succes: false})
     }
 }
-
-// export const getLectureById = async (req, res) => {
-
-//     // input {idLecture}
-//     const idLesson = req.body.idLesson;
-//     const lecture = db.Lecture.findOne({ where: { id_lesson: idLesson } })
-//     return res.json({ lecture })
-// }
-
-// export const getQuizById = async (req, res) => {
-
-//     // input {idQuiz}
-//     const idLesson = req.body.id;
-//     const quiz = db.Quiz.findOne({ where: { id_lesson: idLesson } })
-//     return res.json({ quiz })
-// }
 
 export const createLesson = async (req, res) => {
     return res.json({ status: true })
