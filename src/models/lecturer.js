@@ -12,8 +12,7 @@ const Lecturer = sequelize.define('Lecturer', {
   link_image: DataTypes.STRING,
   email: DataTypes.STRING,
   phone_number: DataTypes.STRING,
-  age: DataTypes.INTEGER,
-  description: DataTypes.INTEGER
+  age: DataTypes.INTEGER
 }, {
   tableName: 'lecturers',
   timestamps: false

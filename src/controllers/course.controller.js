@@ -156,9 +156,36 @@ export const creatCourse = async (req, res) => {
 }
 
 export const updateCourse = async (req, res) => {
-    return res.json({ status: success })
+
+    const detailCourse = JSON.parse(req.body.detailCourse);
+    const { id_course, ...courses } = detailCourse
+    if (req.file) {
+        const filePath = req.file.path;
+        const result = await cloudinary.uploader.upload(filePath, {
+            resource_type: 'image'
+        });
+        infoLecturer.link_image = result.url;
+        fs.unlinkSync(filePath);
+    }
+    const result = await db.Course.update({ ...courses }, { where: { id_course: id_course } });
+    console.log(result);
+    return res.json({ status: "success" });
 }
 
-export const deleteCourse = async (req, res) => {
-    return res.json({ status: success })
+export const updateLecture = async (req, res) => {
+    const lecture = JSON.parse(req.body.lecture);
+    const { id_lecture, ...infoLecture } = lecture
+    console.log('-----')
+    console.log(lecture)
+    if (req.file) {
+        const filePath = req.file.path;
+        const result = await cloudinary.uploader.upload(filePath, {
+            resource_type: 'video'
+        });
+        infoLecture.link_material = result.url;
+        fs.unlinkSync(filePath);
+    }
+    const result = await db.Lecture.update({ ...infoLecture }, { where: { id_lecture: id_lecture } });
+    console.log(result);
+    return res.json({ status: "success" });
 }
