@@ -1,7 +1,6 @@
 import db from "../models/index.js";
 import { faker } from '@faker-js/faker';
 
-
 export const seedLectureres = async () => {
     try {
         await db.Lecturer.bulkCreate(lectureres)
