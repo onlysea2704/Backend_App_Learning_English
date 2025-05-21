@@ -17,6 +17,8 @@ const lectureres =[
     experience: '5 năm',
     link_image: faker.image.avatar(),
     email: 'an.nguyen@example.com',
+    phone_number: '0918297377',
+    age: 30,
     id_user: 1
   },
   {
@@ -24,6 +26,8 @@ const lectureres =[
     experience: '7 năm',
     link_image: faker.image.avatar(),
     email: 'bngoc.tran@example.com',
+    phone_number: '0919307388',
+    age: 32,
     id_user: 2
   },
   {
@@ -31,6 +35,8 @@ const lectureres =[
     experience: '6 năm',
     link_image: faker.image.avatar(),
     email: 'tuan.le@example.com',
+    phone_number: '08888897377',
+    age: 40,
     id_user: 3
   },
   {
@@ -38,6 +44,8 @@ const lectureres =[
     experience: '4 năm',
     link_image: faker.image.avatar(),
     email: 'quhuy.pham@example.com',
+    phone_number: '0918123456',
+    age: 37,
     id_user: 4
   },
   {
@@ -45,6 +53,8 @@ const lectureres =[
     experience: '8 năm',
     link_image: faker.image.avatar(),
     email: 'trang.nguyen@example.com',
+    phone_number: '09182975377',
+    age: 36,
     id_user: 5
   },
   {
@@ -52,6 +62,8 @@ const lectureres =[
     experience: '5 năm',
     link_image: faker.image.avatar(),
     email: 'anhdung.do@example.com',
+    phone_number: '09789456457',
+    age: 33,
     id_user: 6
   },
   {
@@ -59,6 +71,8 @@ const lectureres =[
     experience: '3 năm',
     link_image: faker.image.avatar(),
     email: 'chau.hoang@example.com',
+    phone_number: '091987654377',
+    age: 34,
     id_user: 7
   },
   {
@@ -66,6 +80,8 @@ const lectureres =[
     experience: '6 năm',
     link_image: faker.image.avatar(),
     email: 'kimngan.vo@example.com',
+    phone_number: '091829245678',
+    age: 32,
     id_user: 8
   },
   {
@@ -73,6 +89,8 @@ const lectureres =[
     experience: '4 năm',
     link_image: faker.image.avatar(),
     email: 'thdat.nguyen@example.com',
+    phone_number: '09876543214',
+    age: 33,
     id_user: 9
   },
   {
@@ -80,6 +98,8 @@ const lectureres =[
     experience: '9 năm',
     link_image: faker.image.avatar(),
     email: 'lhuong.bui@example.com',
+    phone_number: '012365789',
+    age: 30,
     id_user: 10
   }
 ]

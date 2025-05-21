@@ -1,5 +1,5 @@
 import express from "express"
-import { checkCompleteLesson, getListLessonByIdCourse, getInfoLesson, markAsDone, getInfoLecturer, getDetailCourseByIdLesson } from "../controllers/lesson.controller.js";
+import { checkCompleteLesson, getListLessonByIdCourse, getInfoLesson, markAsDone, getInfoLecturer, getDetailCourseByIdLesson, getAllLecturer } from "../controllers/lesson.controller.js";
 import { checkUser } from "../middleware/check_auth.js";
 import { getQuizByIdLesson, submitAnswer } from "../controllers/quiz.controller.js";
 import { getLectureByIdLesson } from "../controllers/lecture.controller.js";
@@ -11,6 +11,7 @@ const router = express.Router();
 // visiter
 router.post('/get-list-lessons-by-id-course', getListLessonByIdCourse);
 router.post('/get-info-lecturer', getInfoLecturer);
+router.get('/get-all-lecturer', getAllLecturer);
 router.post('/get-detail-course-by-id-lesson', getDetailCourseByIdLesson);
 
 //student

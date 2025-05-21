@@ -11,6 +11,8 @@ const Lecturer = sequelize.define('Lecturer', {
   experience: DataTypes.STRING,
   link_image: DataTypes.STRING,
   email: DataTypes.STRING,
+  phone_number: DataTypes.STRING,
+  age: DataTypes.INTEGER,
   description: DataTypes.INTEGER
 }, {
   tableName: 'lecturers',

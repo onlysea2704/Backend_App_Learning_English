@@ -102,6 +102,15 @@ export const getInfoLecturer = async (req, res) => {
         return res.status(500).json({succes: false})
     }
 }
+export const getAllLecturer = async (req, res) => {
+    try {
+        const lecturers = await db.Lecturer.findAll();
+        return res.json(lecturers);
+    } catch (error) {
+        console.log(error.message);
+        return res.status(500).json({succes: false})
+    }
+}
 
 export const createLesson = async (req, res) => {
     return res.json({ status: true })
