@@ -10,7 +10,9 @@ export const getLectureByIdLesson = async (req, res) => {
         //     return res.json({ status: false, message: 'Hãy mua khóa học để comment nhé' })
         // }
         const idLesson = req.body.idLesson;
+        console.log('------')
         const lecture = await db.Lecture.findOne({ where: { id_lesson: idLesson } });
+        console.log(lecture)
         return res.json(lecture);
     } catch (error) {
         return res.status(500).json({ error: error.message });
@@ -18,15 +20,33 @@ export const getLectureByIdLesson = async (req, res) => {
 }
 
 export const createLecture = async (req, res) => {
-
     // input
-    const newLesson = await db.Lesson.create({})
-
-    await db.Lecture.create({
-        name_lecture: DataTypes.STRING,
-        description: DataTypes.TEXT,
-        id_lesson: newLesson.id,
-        link_material: '',
+    const idCourse = req.body.idCourse
+    const sumLesson = await db.Lesson.count({where: {id_course : idCourse}})
+    const newLesson = await db.Lesson.create({
+        order_lesson: sumLesson + 1,
+        type_lesson: 'video',
+        id_course: idCourse
     })
-    return res.json({ status: true })
+    await db.Lecture.create({
+        id_lesson: newLesson.id_lesson,
+    })
+    console.log(newLesson.id_lesson)
+    return res.json({ lessonId: newLesson.id_lesson })
+}
+
+export const createQuiz = async (req, res) => {
+    // input
+    const idCourse = req.body.idCourse
+    const sumLesson = await db.Lesson.count({where: {id_course : idCourse}})
+    const newLesson = await db.Lesson.create({
+        order_lesson: sumLesson + 1,
+        type_lesson: 'quiz',
+        id_course: idCourse
+    })
+    await db.Quiz.create({
+        id_lesson: newLesson.id_lesson,
+    })
+    console.log(newLesson.id_lesson)
+    return res.json({ lessonId: newLesson.id_lesson })
 }

@@ -111,11 +111,3 @@ export const getAllLecturer = async (req, res) => {
         return res.status(500).json({succes: false})
     }
 }
-
-export const createLesson = async (req, res) => {
-    return res.json({ status: true })
-}
-
-export const updateLesson = async (req, res) => {
-    return res.json({ status: true })
-}
