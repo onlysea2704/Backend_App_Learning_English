@@ -175,8 +175,6 @@ export const updateCourse = async (req, res) => {
 export const updateLecture = async (req, res) => {
     const lecture = JSON.parse(req.body.lecture);
     const { id_lecture, ...infoLecture } = lecture
-    console.log('-----')
-    console.log(lecture)
     if (req.file) {
         const filePath = req.file.path;
         const result = await cloudinary.uploader.upload(filePath, {
@@ -187,5 +185,13 @@ export const updateLecture = async (req, res) => {
     }
     const result = await db.Lecture.update({ ...infoLecture }, { where: { id_lecture: id_lecture } });
     console.log(result);
+    return res.json({ status: "success" });
+}
+
+export const updateQuiz = async (req, res) => {
+    const quiz = req.body.quiz;
+    const { id_quiz, ...infoQuiz } = quiz;
+
+    const result = await db.Quiz.update({ ...infoQuiz }, { where: { id_quiz: id_quiz } });
     return res.json({ status: "success" });
 }
