@@ -42,8 +42,6 @@ export const getReport = async (req, res) => {
             total_revenue DESC
 		limit 5
         `);
-        console.log('--------------')
-        console.log(revenueByCourse)
 
         const students = await db.Student.count();
         const lessons = await db.Lesson.count();

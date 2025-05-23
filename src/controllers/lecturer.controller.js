@@ -14,6 +14,5 @@ export const updateLecturerInfoById = async (req, res) => {
         fs.unlinkSync(filePath);
     }
     const result = await db.Lecturer.update({ ...infoLecturer }, { where: { id_lecturer: id_lecturer } });
-    console.log(result);
     return res.json({ status: "success" });
 }

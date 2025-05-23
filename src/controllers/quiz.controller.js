@@ -89,7 +89,6 @@ export const submitAnswer = async (req, res) => {
                 })
             } else if (question.type_question === "listening") {
                 const score = question.answer === ans.answer ? question.scale : 0
-                console.log(question.answer)
                 sumScore += score
                 await db.Response.create({
                     id_student: student.id_student,
@@ -100,6 +99,7 @@ export const submitAnswer = async (req, res) => {
                     id_result: newResult.id_result,
                 })
             } else if (question.type_question === "speaking") {
+                console.log('++++++++++++')
                 const result = await scoreSpeakingAI(question.question, ans.filePath);
                 sumScore += result?.score
                 const idSpeakingResponse = await db.Response.create({
@@ -111,7 +111,6 @@ export const submitAnswer = async (req, res) => {
                     comment: result?.comment + '\n' + result?.suggest,
                     id_result: newResult.id_result,
                 })
-                console.log('idSpeakingResponse ', idSpeakingResponse)
             } else if (question.type_question === "writing") {
                 const result = await ScoreWritingAI(question.question, ans.answer);
                 sumScore += result?.score
@@ -124,7 +123,6 @@ export const submitAnswer = async (req, res) => {
                     comment: result?.comment + '\n' + result?.suggest,
                     id_result: newResult.id_result,
                 })
-                console.log('idSpeakingResponse ', idSpeakingResponse)
             }
         }))
         await db.Result.update(

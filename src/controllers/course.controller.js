@@ -111,7 +111,6 @@ export const checkProgress = async (req, res) => {
             isComplete: completeLessonIds.includes(item.id_lesson)
         }));
 
-        // console.log(updatedResults);
         return res.json(listLessonsResult);
     } catch (error) {
         console.log('error: ', error.message);
@@ -168,7 +167,6 @@ export const updateCourse = async (req, res) => {
         fs.unlinkSync(filePath);
     }
     const result = await db.Course.update({ ...courses }, { where: { id_course: id_course } });
-    console.log(result);
     return res.json({ status: "success" });
 }
 
@@ -184,7 +182,6 @@ export const updateLecture = async (req, res) => {
         fs.unlinkSync(filePath);
     }
     const result = await db.Lecture.update({ ...infoLecture }, { where: { id_lecture: id_lecture } });
-    console.log(result);
     return res.json({ status: "success" });
 }
 

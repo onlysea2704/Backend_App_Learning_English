@@ -10,9 +10,7 @@ export const getLectureByIdLesson = async (req, res) => {
         //     return res.json({ status: false, message: 'Hãy mua khóa học để comment nhé' })
         // }
         const idLesson = req.body.idLesson;
-        console.log('------')
         const lecture = await db.Lecture.findOne({ where: { id_lesson: idLesson } });
-        console.log(lecture)
         return res.json(lecture);
     } catch (error) {
         return res.status(500).json({ error: error.message });
@@ -31,7 +29,6 @@ export const createLecture = async (req, res) => {
     await db.Lecture.create({
         id_lesson: newLesson.id_lesson,
     })
-    console.log(newLesson.id_lesson)
     return res.json({ lessonId: newLesson.id_lesson })
 }
 
@@ -47,6 +44,5 @@ export const createQuiz = async (req, res) => {
     await db.Quiz.create({
         id_lesson: newLesson.id_lesson,
     })
-    console.log(newLesson.id_lesson)
     return res.json({ lessonId: newLesson.id_lesson })
 }

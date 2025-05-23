@@ -1,12 +1,11 @@
 import db from "../models/index.js";
 import cloudinary from "../config/cloudinary.js";
 import fs from 'fs'
+import { createQuestionListenging, createQuestionReading, createQuestionSpeaking, createQuestionWriting } from "../config/gemini.js";
 
 export const getAllQuestionByQuizId = async (req, res) => {
 
     const idQuiz = req.body.idQuiz;
-    console.log('=========')
-    console.log(idQuiz)
     const isMyCourse = true;
     if (isMyCourse) {
         const questions = await db.Question.findAll({ where: { id_quiz: idQuiz } })
@@ -22,6 +21,21 @@ export const createQuestion = async (req, res) => {
         id_quiz: idQuiz,
     })
     return res.json(newQuestion);
+}
+
+export const createQuestionByAi = async (req, res) => {
+    const typeQuestion = req.body.typeQuestion
+    let question
+    if (typeQuestion === 'reading') {
+        question = await createQuestionReading();
+    } else if(typeQuestion === 'writing'){
+        question = await createQuestionWriting();
+    } else if(typeQuestion === 'speaking'){
+        question = await createQuestionSpeaking();
+    } else {
+        question = await createQuestionListenging(req.file.path);
+    }
+    return res.json(question);
 }
 
 export const updateQuestion = async (req, res) => {
@@ -56,7 +70,6 @@ export const updateQuestion = async (req, res) => {
             { ...infoQuestion },
             { where: { id_question: id_question } }
         );
-        console.log(resultUpdate);
         return res.json({ status: 'success', result: resultUpdate });
 
     } catch (error) {
