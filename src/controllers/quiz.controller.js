@@ -16,25 +16,26 @@ export const getQuizByIdLesson = async (req, res) => {
 }
 
 export const createQuiz = async (req, res) => {
-    // input {idCourse, typeLesson}
-
-    const { idCourse, typeLesson } = req.body;
-
+    // input
+    const idCourse = req.body.idCourse
+    const sumLesson = await db.Lesson.count({where: {id_course : idCourse}})
     const newLesson = await db.Lesson.create({
-        id_course: idCourse,
-        order_lesson: 1,
-        type_lesson: typeLesson
+        order_lesson: sumLesson + 1,
+        type_lesson: 'quiz',
+        id_course: idCourse
     })
-
     await db.Quiz.create({
-        name_quiz: nameQuiz,
-        description: description,
-        id_lesson: newLesson.id,
+        id_lesson: newLesson.id_lesson,
     })
-    return res.json({ status: "success" })
+    return res.json({ lessonId: newLesson.id_lesson })
 }
 
 export const updateQuiz = async (req, res) => {
+    const quiz = req.body.quiz;
+    const { id_quiz, ...infoQuiz } = quiz;
+
+    const result = await db.Quiz.update({ ...infoQuiz }, { where: { id_quiz: id_quiz } });
+    return res.json({ status: "success" });
 }
 
 export const deleteQuiz = async (req, res) => {

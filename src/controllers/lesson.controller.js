@@ -75,39 +75,4 @@ export const checkCompleteLesson = async (req, res) => {
     }
 }
 
-export const markAsDone = async (req, res) => {
 
-    try {
-        const idUser = req.user.id_user;
-        const idLesson = req.body.idLesson;
-        const student = await db.Student.findOne({ where: { id_user: idUser } });
-        await db.Progress.create({
-            id_student: student.id_student,
-            id_lesson: idLesson
-        })
-        return res.json({ success: true })
-    } catch (error) {
-        console.log(error.message)
-        return res.json({ success: true })
-    }
-}
-
-export const getInfoLecturer = async (req, res) => {
-    try {
-        const idLecturer = req.body.idLecturer;
-        const infoLecturer = await db.Lecturer.findOne({ where: { id_lecturer: idLecturer } });
-        return res.json(infoLecturer);
-    } catch (error) {
-        console.log(error.message);
-        return res.status(500).json({succes: false})
-    }
-}
-export const getAllLecturer = async (req, res) => {
-    try {
-        const lecturers = await db.Lecturer.findAll();
-        return res.json(lecturers);
-    } catch (error) {
-        console.log(error.message);
-        return res.status(500).json({succes: false})
-    }
-}

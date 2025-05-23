@@ -78,7 +78,6 @@ export const updateQuestion = async (req, res) => {
     }
 };
 
-
 export const deleteQuestion = async (req, res) => {
     return res.json()
 }

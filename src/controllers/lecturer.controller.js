@@ -2,11 +2,25 @@ import db from "../models/index.js";
 import cloudinary from "../config/cloudinary.js";
 import fs from "fs"
 
-export const getAllLecturer = async (req, res) => {
-    const lecturers = await db.Lecturer.findAll()
-    return res.json(lecturers)
+export const getInfoLecturer = async (req, res) => {
+    try {
+        const idLecturer = req.body.idLecturer;
+        const infoLecturer = await db.Lecturer.findOne({ where: { id_lecturer: idLecturer } });
+        return res.json(infoLecturer);
+    } catch (error) {
+        console.log(error.message);
+        return res.status(500).json({succes: false})
+    }
 }
-
+export const getAllLecturer = async (req, res) => {
+    try {
+        const lecturers = await db.Lecturer.findAll();
+        return res.json(lecturers);
+    } catch (error) {
+        console.log(error.message);
+        return res.status(500).json({succes: false})
+    }
+}
 export const updateLecturerInfoById = async (req, res) => {
     const lecturer = JSON.parse(req.body.lecturer);
     const {id_lecturer, ...infoLecturer} = lecturer
@@ -20,4 +34,7 @@ export const updateLecturerInfoById = async (req, res) => {
     }
     const result = await db.Lecturer.update({ ...infoLecturer }, { where: { id_lecturer: id_lecturer } });
     return res.json({ status: "success" });
+}
+export const createLecturer = async (req, res) => {
+    
 }

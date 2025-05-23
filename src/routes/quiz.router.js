@@ -1,6 +1,6 @@
 import express from "express"
 import { checkAdminRole, checkUser } from "../middleware/check_auth.js"
-import { createQuiz, getQuizByIdLesson, updateQuiz } from "../controllers/quiz.controller.js";
+import { createQuiz, deleteQuiz, getQuizByIdLesson, updateQuiz } from "../controllers/quiz.controller.js";
 
 const router = express.Router();
 
@@ -11,6 +11,6 @@ router.post('/submit-answers', checkUser, upload.array('files'), submitAnswer);
 // Admin
 router.post('/create-quiz', checkAdminRole, createQuiz);
 router.post('/update-quiz', checkAdminRole, updateQuiz);
-// router.post('/delete-quiz', checkAdminRole, updateQuiz);
+router.post('/delete-quiz', checkAdminRole, deleteQuiz);
 
 export default router;

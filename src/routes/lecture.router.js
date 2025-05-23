@@ -1,7 +1,7 @@
 import express from "express"
 import { checkAdminRole, checkUser } from "../middleware/check_auth.js"
 import multer from "multer"
-import { createLecture, getLectureByIdLesson } from "../controllers/lecture.controller.js";
+import { createLecture, deleteLecture, getLectureByIdLesson } from "../controllers/lecture.controller.js";
 import { updateLecture } from "../controllers/course.controller.js";
 import { markAsDone } from "../controllers/lesson.controller.js";
 
@@ -16,6 +16,6 @@ router.post('/mark-as-done', checkUser, markAsDone);
 // Admin
 router.post('/update-lecture', checkAdminRole,upload.single('video'), updateLecture);
 router.post('/create-lecture', checkAdminRole, createLecture);
-// router.post('/delete-lecture', checkAdminRole, );
+router.post('/delete-lecture', checkAdminRole, deleteLecture);
 
 export default router;

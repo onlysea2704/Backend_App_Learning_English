@@ -124,12 +124,6 @@ export const getAllListCourseAdmin = async (req, res) => {
     return res.json(courses)
 }
 
-export const getAllLecturer = async (req, res) => {
-    const lecturers = await db.Lecturer.findAll()
-
-    return res.json(lecturers)
-}
-
 export const creatCourse = async (req, res) => {
     // input metadata: { nameCourse, description, price, idLecturer }
 
@@ -167,28 +161,5 @@ export const updateCourse = async (req, res) => {
         fs.unlinkSync(filePath);
     }
     const result = await db.Course.update({ ...courses }, { where: { id_course: id_course } });
-    return res.json({ status: "success" });
-}
-
-export const updateLecture = async (req, res) => {
-    const lecture = JSON.parse(req.body.lecture);
-    const { id_lecture, ...infoLecture } = lecture
-    if (req.file) {
-        const filePath = req.file.path;
-        const result = await cloudinary.uploader.upload(filePath, {
-            resource_type: 'video'
-        });
-        infoLecture.link_material = result.url;
-        fs.unlinkSync(filePath);
-    }
-    const result = await db.Lecture.update({ ...infoLecture }, { where: { id_lecture: id_lecture } });
-    return res.json({ status: "success" });
-}
-
-export const updateQuiz = async (req, res) => {
-    const quiz = req.body.quiz;
-    const { id_quiz, ...infoQuiz } = quiz;
-
-    const result = await db.Quiz.update({ ...infoQuiz }, { where: { id_quiz: id_quiz } });
     return res.json({ status: "success" });
 }
