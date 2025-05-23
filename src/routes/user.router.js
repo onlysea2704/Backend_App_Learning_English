@@ -5,6 +5,8 @@ import multer from "multer"
 const upload = multer({ dest: 'uploads/' })
 
 const router = express.Router();
+
+//Visiter
 router.post('/register', upload.single('avatar'), register);
 
 export default router;

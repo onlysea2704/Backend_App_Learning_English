@@ -5,6 +5,8 @@ import multer from "multer"
 
 const upload = multer({ dest: 'uploads/' })
 const router = express.Router();
+
+// Student
 router.get('/info', checkUser, getStudentInfoById);
 router.put('/update', checkUser, upload.single('avatar'), updateStudentInfoById);
 

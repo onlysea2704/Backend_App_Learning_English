@@ -2,6 +2,11 @@ import db from "../models/index.js";
 import cloudinary from "../config/cloudinary.js";
 import fs from "fs"
 
+export const getAllLecturer = async (req, res) => {
+    const lecturers = await db.Lecturer.findAll()
+    return res.json(lecturers)
+}
+
 export const updateLecturerInfoById = async (req, res) => {
     const lecturer = JSON.parse(req.body.lecturer);
     const {id_lecturer, ...infoLecturer} = lecturer

@@ -19,13 +19,10 @@ router.get('/my-course', checkUser, getMyCourses)
 router.post('/detail-course', checkUser, getDetailCourseById)
 router.post('/check-progress', checkUser, checkProgress)
 
-// user
+// admin
 router.get('/get-all-list-courses-admin', checkAdminRole, getAllListCourseAdmin)
-router.post('/create-course', upload.single('image'), creatCourse)
-router.post('/update-course',upload.single('detailCourse'), updateCourse)
-// router.get('/delete-course', deleteCourse)
-
-router.post('/update-lecture',upload.single('video'), updateLecture);
-router.post('/update-quiz', updateQuiz);
+router.post('/create-course', checkAdminRole, upload.single('image'), creatCourse)
+router.post('/update-course', checkAdminRole,upload.single('detailCourse'), updateCourse)
+// router.get('/delete-course', checkAdminRole, deleteCourse)
 
 export default router;

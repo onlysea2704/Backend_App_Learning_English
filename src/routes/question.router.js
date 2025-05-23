@@ -14,6 +14,6 @@ router.post('/update-question', upload.fields([
     { name: 'image', maxCount: 1 },
     { name: 'audio', maxCount: 1 }
 ]), updateQuestion);
-router.get('/delete-question', getAllQuestionByQuizId);
+// router.get('/delete-question', getAllQuestionByQuizId);
 
 export default router
