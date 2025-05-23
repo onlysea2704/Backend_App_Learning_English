@@ -1,6 +1,6 @@
 import express from "express"
 import { checkAdminRole, checkUser } from "../middleware/check_auth.js"
-import { checkProgress, creatCourse, getAllCourse, getAllListCourseAdmin, getDetailCourseById, getMyCourses, getPopularCourse, publicApiGetAllCourse, publicApiGetDetailCourseById, updateCourse, updateLecture, updateQuiz } from "../controllers/course.controller.js"
+import { checkProgress, creatCourse, getAllCourse, getAllListCourseAdmin, getDetailCourseById, getMyCourses, getPopularCourse, publicApiGetAllCourse, publicApiGetDetailCourseById, updateCourse } from "../controllers/course.controller.js"
 import multer from "multer"
 
 const upload = multer({ dest: 'uploads/' });

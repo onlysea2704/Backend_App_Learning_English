@@ -1,7 +1,7 @@
 import db from "../models/index.js";
 import cloudinary from "../config/cloudinary.js";
 import fs from 'fs'
-import { createQuestionListenging, createQuestionReading, createQuestionSpeaking, createQuestionWriting } from "../config/gemini.js";
+import { createQuestionListenging, createQuestionReading, createQuestionSpeaking, createQuestionWriting } from "../utils.ts/useModelAi.js";
 
 export const getAllQuestionByQuizId = async (req, res) => {
 

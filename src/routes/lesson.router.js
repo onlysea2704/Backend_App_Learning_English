@@ -1,11 +1,6 @@
 import express from "express"
-import { checkCompleteLesson, getListLessonByIdCourse, getInfoLesson, markAsDone, getInfoLecturer, getDetailCourseByIdLesson, getAllLecturer } from "../controllers/lesson.controller.js";
+import { checkCompleteLesson, getListLessonByIdCourse, getInfoLesson, getDetailCourseByIdLesson } from "../controllers/lesson.controller.js";
 import { checkUser } from "../middleware/check_auth.js";
-import { getQuizByIdLesson, submitAnswer } from "../controllers/quiz.controller.js";
-import { createLecture, createQuiz, getLectureByIdLesson } from "../controllers/lecture.controller.js";
-import multer from "multer"
-
-const upload = multer({ dest: 'uploads/' })
 
 const router = express.Router();
 // visiter

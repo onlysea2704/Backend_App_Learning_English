@@ -1,7 +1,7 @@
 import db from "../models/index.js";
 import cloudinary from "../config/cloudinary.js";
 import fs, { link } from "fs";
-import { scoreSpeakingAI, ScoreWritingAI } from "../config/gemini.js";
+import { scoreSpeakingAI, ScoreWritingAI } from "../utils.ts/useModelAi.js";
 
 export const getQuizByIdLesson = async (req, res) => {
     // input {idLesson}

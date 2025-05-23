@@ -1,8 +1,7 @@
 import express from 'express'
-import { checkAdminRole, checkUser } from '../middleware/check_auth.js';
+import { checkAdminRole } from '../middleware/check_auth.js';
 import multer from "multer"
-import { createLecturer, updateLecturerInfoById } from '../controllers/lecturer.controller.js';
-import { getInfoLecturer } from '../controllers/lesson.controller.js';
+import { createLecturer, getAllLecturer, getInfoLecturer, updateLecturerInfoById } from '../controllers/lecturer.controller.js';
 
 const upload = multer({ dest: 'uploads/' })
 const router = express.Router();

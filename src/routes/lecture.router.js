@@ -2,8 +2,8 @@ import express from "express"
 import { checkAdminRole, checkUser } from "../middleware/check_auth.js"
 import multer from "multer"
 import { createLecture, deleteLecture, getLectureByIdLesson } from "../controllers/lecture.controller.js";
-import { updateLecture } from "../controllers/course.controller.js";
-import { markAsDone } from "../controllers/lesson.controller.js";
+import { updateLecture } from "../controllers/lecture.controller.js";
+import { markAsDone } from "../controllers/lecture.controller.js";
 
 const upload = multer({ dest: 'uploads/' });
 
