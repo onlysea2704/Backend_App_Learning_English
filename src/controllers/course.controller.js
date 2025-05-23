@@ -163,3 +163,7 @@ export const updateCourse = async (req, res) => {
     const result = await db.Course.update({ ...courses }, { where: { id_course: id_course } });
     return res.json({ status: "success" });
 }
+
+export const deleteCourse = async (req, res) => {
+    
+}
