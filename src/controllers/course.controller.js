@@ -125,27 +125,9 @@ export const getAllListCourseAdmin = async (req, res) => {
 }
 
 export const creatCourse = async (req, res) => {
-    // input metadata: { nameCourse, description, price, idLecturer }
 
-    const metadata = JSON.parse(req.body.metadata);
-    const filePath = req.file.path;
-
-    const result = await cloudinary.uploader.upload(filePath, {
-        resource_type: 'image'
-    });
-
-    fs.unlinkSync(filePath);
-
-    await db.Course.create({
-        name_course: metadata.nameCourse,
-        description: metadata.description,
-        price: metadata.price,
-        link_image: result.url,
-        number_lesson: 0,
-        number_student: 0,
-        id_lecturer: metadata.idLecturer,
-    })
-    return res.json({ status: 'success' })
+    const newCourse = await db.Course.create()
+    return res.json(newCourse)
 }
 
 export const updateCourse = async (req, res) => {
@@ -157,7 +139,7 @@ export const updateCourse = async (req, res) => {
         const result = await cloudinary.uploader.upload(filePath, {
             resource_type: 'image'
         });
-        infoLecturer.link_image = result.url;
+        courses.link_image = result.url;
         fs.unlinkSync(filePath);
     }
     const result = await db.Course.update({ ...courses }, { where: { id_course: id_course } });

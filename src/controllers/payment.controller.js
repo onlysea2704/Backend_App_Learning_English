@@ -12,7 +12,7 @@ export const CreateBill = async (req, res) => {
     const idUser = req.user.id_user
     const student = await db.Student.findOne({ where: { id_user: idUser } })
 
-    const embed_data = { redirecturl: `https://student-hustenglish-system.vercel.app/coursedetail/${idCourse}` };
+    const embed_data = { redirecturl: `http://localhost:3000/coursedetail/${idCourse}` };
     const items = [infoCourse];
     const transID = Math.floor(Math.random() * 1000000);
     const order = {

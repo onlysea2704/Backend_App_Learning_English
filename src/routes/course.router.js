@@ -20,7 +20,7 @@ router.post('/check-progress', checkUser, checkProgress);
 // admin
 router.get('/get-all-list-courses-admin', checkAdminRole, getAllListCourseAdmin);
 router.post('/create-course', checkAdminRole, upload.single('image'), creatCourse);
-router.post('/update-course', checkAdminRole,upload.single('detailCourse'), updateCourse);
+router.post('/update-course', checkAdminRole,upload.single('courseImage'), updateCourse);
 router.get('/delete-course', checkAdminRole, deleteCourse);
 
 export default router;
