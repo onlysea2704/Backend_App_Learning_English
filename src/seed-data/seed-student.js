@@ -27,7 +27,7 @@ export const seedStudents = async () => {
     //   phone: faker.phone.number('090########'),
       phone: '09' + faker.string.numeric(8),
       email: faker.internet.email(),
-      link_image: faker.image.avatar(),
+      link_image: faker.image.urlLoremFlickr({ category: 'cartoon' }),
       id_user: user.id_user
     }));
 

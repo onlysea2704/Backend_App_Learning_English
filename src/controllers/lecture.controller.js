@@ -1,5 +1,7 @@
 import db from "../models/index.js";
 import { checkMyCourse } from "../utils.ts/checkMyCourse.js";
+import cloudinary from "../config/cloudinary.js";
+import fs from "fs"
 
 export const updateLecture = async (req, res) => {
     const lecture = JSON.parse(req.body.lecture);

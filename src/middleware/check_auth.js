@@ -3,27 +3,24 @@ import db from "../models/index.js";
 
 export const checkAdminRole = async (req, res, next) => {
 
-  if (!authHeader || !authHeader.startsWith('Bearer ')) {
-    return res.status(401).json({ message: 'Unauthorized: Token missing' });
-  }
-
-  const token = req.headers.authorization.split(" ")[1]
   try {
+
+    const token = req.headers.authorization.split(" ")[1]
     // Xác thực ID Token bằng Firebase Admin SDK
     const decodedToken = await admin.auth().verifyIdToken(token);
     const uid = decodedToken.uid;
-
     // Lấy user từ database
-    const [user] = await db.findOne({ where: { firebase_user_id: uid } })
+    const user = await db.User.findOne({ where: { firebase_user_id: uid } })
 
     if (!user) return res.status(404).send("User not found");
 
-    if (user[0].role !== requiredRole) {
+    if (user.role !== 'admin') {
       return res.status(403).send("Forbidden");
     }
     req.user = user;
     next();
   } catch (error) {
+    console.log('error:', error.message);
     res.status(401).send("Unauthorized");
   }
 };
