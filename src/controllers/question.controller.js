@@ -28,9 +28,9 @@ export const createQuestionByAi = async (req, res) => {
     let question
     if (typeQuestion === 'reading') {
         question = await createQuestionReading();
-    } else if(typeQuestion === 'writing'){
+    } else if (typeQuestion === 'writing') {
         question = await createQuestionWriting();
-    } else if(typeQuestion === 'speaking'){
+    } else if (typeQuestion === 'speaking') {
         question = await createQuestionSpeaking();
     } else {
         question = await createQuestionListenging(req.file.path);
@@ -79,5 +79,15 @@ export const updateQuestion = async (req, res) => {
 };
 
 export const deleteQuestion = async (req, res) => {
-    return res.json()
+    try {
+        const idQuestion = req.body.idQuestion
+        await db.Question.destroy({
+            where: {
+                id_question: idQuestion
+            }
+        });
+        return res.json({ status: true })
+    } catch (error) {
+        return res.json({ status: false })
+    }
 }

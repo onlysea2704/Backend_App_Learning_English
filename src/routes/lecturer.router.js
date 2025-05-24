@@ -11,7 +11,7 @@ router.post('/get-info-lecturer', getInfoLecturer);
 router.post('/public-api-get-all-lecturers', getAllLecturer);
 
 // Admin
-router.post('/create-lectuer', checkAdminRole, upload.single('avatar'), createLecturer);
+router.post('/create-lecturer', checkAdminRole, createLecturer);
 router.post('/update', checkAdminRole, upload.single('avatar'), updateLecturerInfoById);
 
 export default router;

@@ -147,5 +147,16 @@ export const updateCourse = async (req, res) => {
 }
 
 export const deleteCourse = async (req, res) => {
-    
+
+    try {
+        const idCourse = req.body.idCourse
+        await db.Course.destroy({
+            where: {
+                id_course: idCourse
+            }
+        });
+        return res.json({ status: true })
+    } catch (error) {
+        return res.json({ status: false })
+    }
 }

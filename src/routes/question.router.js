@@ -17,6 +17,6 @@ router.post('/update-question', checkAdminRole, upload.fields([
     { name: 'image', maxCount: 1 },
     { name: 'audio', maxCount: 1 }
 ]), updateQuestion);
-router.get('/delete-question',checkAdminRole, deleteQuestion);
+router.post('/delete-question',checkAdminRole, deleteQuestion);
 
 export default router

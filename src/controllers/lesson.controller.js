@@ -75,4 +75,18 @@ export const checkCompleteLesson = async (req, res) => {
     }
 }
 
+export const deleteLesson = async (req, res) => {
+
+    try {
+        const idLesson = req.body.idLesson
+        await db.Lesson.destroy({
+            where: {
+                id_lesson: idLesson
+            }
+        });
+        return res.json({ status: true })
+    } catch (error) {
+        return res.json({ status: false })
+    }
+}
 
