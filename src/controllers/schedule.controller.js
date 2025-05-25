@@ -20,7 +20,7 @@ export const updateSchedule = async (req, res) => {
             try {
                 await qstash.messages.delete(schedule.id_schedule_qstash)
             } catch (error) {
-                console.log('Đã được gửi nên không thể xóa')
+                console.log('Message đã được gửi nên không thể xóa')
             }
         }
         // Bắt buộc phải chuyển thời gian như này
@@ -48,7 +48,7 @@ export const deleteSchedule = async (req, res) => {
         try {
             await qstash.messages.delete(schedule.id_schedule_qstash)
         } catch (error) {
-            console.log('Đã được gửi nên không thể xóa')
+            console.log('Message đã được gửi nên không thể xóa')
         }
         await db.Schedule.destroy({
             where: {
