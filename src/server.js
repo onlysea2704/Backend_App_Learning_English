@@ -14,6 +14,7 @@ import resultRoutes from "./routes/result.router.js"
 import reportRoutes from "./routes/report.router.js"
 import lecturerRoutes from "./routes/lecturer.router.js"
 import paymentRoutes from "./routes/payment.router.js"
+import scheduleRoutes from "./routes/schedule.router.js"
 import { urlNgrok } from './config/ngrok.js';
 
 dotenv.config()
@@ -35,6 +36,7 @@ app.use('/result',resultRoutes)
 app.use('/report',reportRoutes)
 app.use('/lecturer',lecturerRoutes)
 app.use('/payment',paymentRoutes)
+app.use('/schedule',scheduleRoutes)
 
 const port = process.env.SERVER_PORT
 app.listen(port, () => {
