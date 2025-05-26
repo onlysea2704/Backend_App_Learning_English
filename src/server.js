@@ -38,7 +38,7 @@ app.use('/lecturer',lecturerRoutes)
 app.use('/payment',paymentRoutes)
 app.use('/schedule',scheduleRoutes)
 
-const port = process.env.SERVER_PORT
+const port = process.env.SERVER_PORT || 3000
 app.listen(port, () => {
     console.log(`Server đang chạy tại http://localhost:${port}`)
     console.log(`Server đang chạy tại Ngrok:  ${urlNgrok}`)
