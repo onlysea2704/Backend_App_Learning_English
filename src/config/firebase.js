@@ -3,6 +3,10 @@ import admin from "firebase-admin";
 // Kiểm tra xem Firebase đã được khởi tạo chưa
 if (!admin.apps.length) {
     let serviceAccount
+    console.log(process.env.FIREBASE_PROJECT_ID)
+    console.log(process.env.FIREBASE_PRIVATE_KEY)
+    console.log(process.env.FIREBASE_CLIENT_EMAIL)
+    console.log(process.env.FIREBASE_PRIVATE_KEY)
     try {
         if (process.env.FIREBASE_PROJECT_ID &&
             process.env.FIREBASE_PRIVATE_KEY &&
