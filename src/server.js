@@ -15,7 +15,7 @@ import reportRoutes from "./routes/report.router.js"
 import lecturerRoutes from "./routes/lecturer.router.js"
 import paymentRoutes from "./routes/payment.router.js"
 import scheduleRoutes from "./routes/schedule.router.js"
-import { urlNgrok } from './config/ngrok.js';
+// import { urlNgrok } from './config/ngrok.js';
 
 dotenv.config()
 
@@ -41,5 +41,5 @@ app.use('/schedule',scheduleRoutes)
 const port = process.env.SERVER_PORT || 3000
 app.listen(port, () => {
     console.log(`Server đang chạy tại http://localhost:${port}`)
-    console.log(`Server đang chạy tại Ngrok:  ${urlNgrok}`)
+    // console.log(`Server đang chạy tại Ngrok:  ${urlNgrok}`)
 })
