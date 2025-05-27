@@ -4,13 +4,13 @@ import admin from "firebase-admin";
 if (!admin.apps.length) {
   try {
     // Kiểm tra biến môi trường
+    console.log(process.env.FIREBASE_CONFIG_JSON)
     if (!process.env.FIREBASE_CONFIG_JSON) {
       throw new Error('FIREBASE_CONFIG_JSON environment variable is not set');
     }
 
     // Parse service account từ biến môi trường
     const serviceAccount = JSON.parse(process.env.FIREBASE_CONFIG_JSON);
-    console.log(serviceAccount);
     // Validate các field bắt buộc
     const requiredFields = ['type', 'project_id', 'private_key', 'client_email'];
     for (const field of requiredFields) {
