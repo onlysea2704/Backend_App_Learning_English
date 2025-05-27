@@ -1,12 +1,9 @@
-import admin from "firebase-admin"
-// import serviceAccount from "../../serviceAccountKey.json" assert { type: "json" };
+import admin from "firebase-admin";
 
-import { createRequire } from 'module';
+const serviceAccount = JSON.parse(process.env.FIREBASE_CONFIG_JSON);
 
-const require = createRequire(import.meta.url);
-const serviceAccount = require('../../serviceAccountKey.json');
-
-// Khởi tạo Firebase Admin
-admin.initializeApp({ credential: admin.credential.cert(serviceAccount) });
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+});
 
 export { admin };
