@@ -3,7 +3,7 @@ import { configZaloPay } from "../config/zalopay.js";
 import CryptoJS from "crypto-js";
 import moment from "moment";
 import axios from "axios";
-import { urlNgrok } from "../config/ngrok.js";
+// import { urlNgrok } from "../config/ngrok.js";
 
 export const CreateBill = async (req, res) => {
 
