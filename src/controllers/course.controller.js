@@ -86,7 +86,7 @@ export const checkProgress = async (req, res) => {
                 l.order_lesson,
                 l.type_lesson,
                 COALESCE(le.name_lecture, q.name_quiz) AS lesson_name
-            FROM Lessons l
+            FROM lessons l
             LEFT JOIN lectures le ON l.id_lesson = le.id_lesson
             LEFT JOIN quizzes q ON l.id_lesson = q.id_lesson
             WHERE l.id_course = :id_course
