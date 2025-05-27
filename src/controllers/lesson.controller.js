@@ -13,7 +13,7 @@ export const getListLessonByIdCourse = async (req, res) => {
             l.type_lesson,
             COALESCE(le.name_lecture, q.name_quiz) AS lesson_name,
             COALESCE(le.id_lecture, q.id_quiz) AS id_lecture_quiz
-        FROM Lessons l
+        FROM lessons l
         LEFT JOIN lectures le ON l.id_lesson = le.id_lesson
         LEFT JOIN quizzes q ON l.id_lesson = q.id_lesson
         WHERE l.id_course = :id_course
