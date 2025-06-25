@@ -3,7 +3,7 @@ import { configZaloPay } from "../config/zalopay.js";
 import CryptoJS from "crypto-js";
 import moment from "moment";
 import axios from "axios";
-// import { urlNgrok } from "../config/ngrok.js";
+import { urlNgrok } from "../config/ngrok.js";
 
 export const CreateBill = async (req, res) => {
 
@@ -26,8 +26,8 @@ export const CreateBill = async (req, res) => {
         // Lưu ý giá tiền phải chẵn mới thanh toán được
         description: `Thanh Toán Khóa Học ${infoCourse.name_course} #${transID}`,
         bank_code: "",
-        // callback_url: `${urlNgrok}/payment/confirm-payment`,
-        callback_url: `http://localhost:3000/payment/confirm-payment`,
+        callback_url: `${urlNgrok}/payment/confirm-payment`,
+        // callback_url: `http://localhost:5000/payment/confirm-payment`,
     };
 
     // appid|app_trans_id|appuser|amount|apptime|embeddata|item

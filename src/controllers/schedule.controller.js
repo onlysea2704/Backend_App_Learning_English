@@ -1,6 +1,6 @@
 import { qstash } from "../config/qstash.js";
 import db from "../models/index.js";
-// import { urlNgrok } from "../config/ngrok.js";
+import { urlNgrok } from "../config/ngrok.js";
 import { transporterSendEmail } from "../config/gmail.js";
 
 export const getAllSchedule = async (req, res) => {
@@ -27,8 +27,8 @@ export const updateSchedule = async (req, res) => {
         const scheduleDate = new Date(schedule.time_sent);
         const notBeforeTimestamp = Math.floor(scheduleDate.getTime() / 1000);
         const response = await qstash.publishJSON({
-            // url: `${urlNgrok}/schedule/send-email`,
-            url: `http://localhost:3000//schedule/send-email`,
+            url: `${urlNgrok}/schedule/send-email`,
+            // url: `http://localhost:3000//schedule/send-email`,
             body: { id_schedule: schedule.id_schedule },
             // Thời gian bắt đầu gửi (UTC ISO 8601 format)
             notBefore: notBeforeTimestamp,

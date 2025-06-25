@@ -3,10 +3,6 @@ import admin from "firebase-admin";
 // Kiểm tra xem Firebase đã được khởi tạo chưa
 if (!admin.apps.length) {
     let serviceAccount
-    console.log(process.env.FIREBASE_PROJECT_ID)
-    console.log(process.env.FIREBASE_PRIVATE_KEY)
-    console.log(process.env.FIREBASE_CLIENT_EMAIL)
-    console.log(process.env.FIREBASE_PRIVATE_KEY)
     try {
         if (process.env.FIREBASE_PROJECT_ID &&
             process.env.FIREBASE_PRIVATE_KEY &&
@@ -24,8 +20,6 @@ if (!admin.apps.length) {
                 client_x509_cert_url: `https://www.googleapis.com/robot/v1/metadata/x509/${process.env.FIREBASE_CLIENT_EMAIL}`,
                 universe_domain: "googleapis.com"
             };
-            console.log('++++++++++++')
-            console.log(serviceAccount)
         } else {
             throw new Error('Firebase configuration not found. Please set FIREBASE_CONFIG_JSON or individual Firebase environment variables.');
         }
@@ -43,8 +37,7 @@ if (!admin.apps.length) {
             credential: admin.credential.cert(serviceAccount),
             // Có thể thêm databaseURL nếu sử dụng Realtime Database
             // databaseURL: `https://${serviceAccount.project_id}-default-rtdb.firebaseio.com`
-        });
-
+        })
         console.log('Firebase Admin initialized successfully');
     } catch (error) {
         console.error('Firebase initialization error:', error.message);
